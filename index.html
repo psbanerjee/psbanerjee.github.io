@@ -1,45 +1,478 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partha Sarathi Banerjee</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-        }
-        h1 {
-            color: #0056b3;
-        }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Partha Sarathi Banerjee — Quantitative Researcher & PhD Candidate</title>
+  <meta name="description" content="Portfolio of Partha Sarathi Banerjee — Quantitative Researcher and PhD Candidate in Theoretical Physics (IIT Delhi). Model Risk Management, Data Science, and Condensed Matter research." />
+  <link rel="canonical" href="https://psbanerjee.github.io/" />
+  <meta property="og:title" content="Partha Sarathi Banerjee — Quantitative Researcher & PhD Candidate" />
+  <meta property="og:description" content="Model Risk, Data Science, and Quantum Condensed Matter. Publications, projects, and contact." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://psbanerjee.github.io/" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b1020;          /* dark */
+      --panel: #0f152b;
+      --soft: #121a35cc;
+      --text: #eef2ff;
+      --muted: #b8c1ec;
+      --brand: #22d3ee;       /* cyan */
+      --brand-2: #a78bfa;     /* violet */
+      --ok: #34d399;
+      --warn: #f59e0b;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .light{
+      --bg: #fcfcff;          /* light */
+      --panel: #ffffff;
+      --soft: #f4f6ffcc;
+      --text: #0b1020;
+      --muted: #46506b;
+      --brand: #0891b2;
+      --brand-2: #6d28d9;
+      --ok: #059669;
+      --warn: #b45309;
+      --shadow: 0 10px 25px rgba(0,0,0,.08);
+    }
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: radial-gradient(1200px 800px at 80% -10%, #3b82f630, transparent 70%),
+                  radial-gradient(800px 600px at 0% 10%, #22d3ee30, transparent 70%),
+                  linear-gradient(180deg, var(--bg), #080b19);
+      color:var(--text);
+      line-height:1.6;
+      letter-spacing:0.02em;
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+    }
+    .container{width:min(1100px, 92%); margin-inline:auto}
+    header.nav{
+      position:sticky; top:0; z-index:50;
+      background:linear-gradient(180deg, color-mix(in srgb, var(--bg) 85%, transparent), transparent);
+      backdrop-filter:saturate(180%) blur(8px);
+      border-bottom:1px solid color-mix(in srgb, var(--text) 10%, transparent);
+    }
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:12px 0}
+    .logo{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px}
+    .logo .dot{width:10px;height:10px;border-radius:50%;background:conic-gradient(from 180deg at 50% 50%, var(--brand), var(--brand-2)); box-shadow:0 0 12px var(--brand)}
+    nav ul{list-style:none; display:flex; gap:18px; padding:0; margin:0}
+    nav a{color:var(--muted); text-decoration:none; font-weight:600}
+    nav a:hover{color:var(--text)}
+    .btn{display:inline-flex; align-items:center; gap:10px; border:1px solid color-mix(in srgb, var(--brand) 50%, transparent);
+      background:linear-gradient(180deg, color-mix(in srgb, var(--brand) 25%, transparent), color-mix(in srgb, var(--brand-2) 18%, transparent));
+      color:var(--text); padding:10px 14px; border-radius:14px; text-decoration:none; font-weight:700; box-shadow:var(--shadow)}
+    .btn:hover{transform:translateY(-1px)}
+    .hero{position:relative; padding:56px 0 28px;}
+    .hero-grid{display:grid; grid-template-columns: 1.4fr 1fr; gap:30px; align-items:center}
+    .badge{display:inline-flex; gap:8px; align-items:center; font-size:12px; padding:6px 10px; border-radius:999px; background:linear-gradient(180deg, var(--soft), transparent); border:1px solid color-mix(in srgb, var(--text) 12%, transparent)}
+    .name{font-size: clamp(30px, 4.5vw, 52px); line-height:1.1; margin:16px 0; font-weight:900}
+    .title{font-size: clamp(16px, 2.2vw, 22px); color:var(--muted); margin:6px 0 18px; font-weight:600}
+    .hero-cta{display:flex; flex-wrap:wrap; gap:12px; align-items:center}
+    .meta{display:flex; flex-wrap:wrap; gap:14px; color:var(--muted); font-size:14px}
+    .panel{background:linear-gradient(180deg, var(--soft), transparent); border:1px solid color-mix(in srgb, var(--text) 10%, transparent); border-radius:18px; padding:18px; box-shadow:var(--shadow)}
+    .quick{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
+    .quick .card{padding:14px; border-radius:14px; background:linear-gradient(180deg, color-mix(in srgb, var(--brand) 9%, transparent), transparent); border:1px solid color-mix(in srgb, var(--text) 10%, transparent)}
+    .tag{display:inline-block; font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid color-mix(in srgb, var(--text) 15%, transparent); background:linear-gradient(180deg, var(--soft), transparent); margin:4px 6px 0 0}
+    section{padding:36px 0}
+    h2{font-size: clamp(20px, 2.8vw, 28px); margin:0 0 14px; letter-spacing:.2px}
+    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:18px}
+    .col-4{grid-column: span 4}
+    .col-8{grid-column: span 8}
+    .col-6{grid-column: span 6}
+    .list{margin:0; padding:0; list-style:none}
+    .li-item{padding:16px; border-left:3px solid color-mix(in srgb, var(--brand) 60%, transparent); border-radius:10px; margin:10px 0; background:linear-gradient(180deg, var(--soft), transparent)}
+    .muted{color:var(--muted)}
+    .kicker{font-weight:700; color:var(--brand)}
+    .mono{font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace}
+    .socials{display:flex; flex-wrap:wrap; gap:10px}
+    .socials a{display:inline-flex; align-items:center; gap:8px; text-decoration:none; padding:8px 12px; border-radius:999px; border:1px solid color-mix(in srgb, var(--text) 12%, transparent); color:var(--text); background:linear-gradient(180deg, var(--soft), transparent)}
+    .socials svg{width:16px; height:16px}
+    .proj-grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px}
+    .proj{padding:18px; border-radius:16px; border:1px solid color-mix(in srgb, var(--text) 12%, transparent); background:linear-gradient(180deg, color-mix(in srgb, var(--brand-2) 8%, transparent), var(--soft)); box-shadow:var(--shadow)}
+    .proj h3{margin:0 0 8px}
+    .proj .meta{font-size:12px}
+    .badges{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+    .badge-chip{border:1px dashed color-mix(in srgb, var(--text) 22%, transparent); padding:6px 10px; border-radius:999px; font-size:12px}
+    .timeline{position:relative}
+    .timeline:before{content:""; position:absolute; left:10px; top:0; bottom:0; width:2px; background:linear-gradient(180deg, var(--brand), transparent)}
+    .titem{position:relative; margin-left:28px; padding:12px 12px 12px 18px; border-radius:10px; background:linear-gradient(180deg, var(--soft), transparent); border:1px solid color-mix(in srgb, var(--text) 10%, transparent); margin-bottom:12px}
+    .titem:before{content:""; position:absolute; left:-10px; top:16px; width:10px; height:10px; border-radius:50%; background:conic-gradient(from 180deg, var(--brand), var(--brand-2)); box-shadow:0 0 8px var(--brand)}
+    footer{padding:30px 0 60px; color:var(--muted); font-size:14px}
+    .fine{font-size:13px; color:var(--muted)}
+    .split{display:grid; grid-template-columns: 1fr 1fr; gap:18px}
+    .hide{display:none}
+    .skip-link{position:absolute; left:-9999px}
+    .skip-link:focus{left:12px; top:12px; z-index:1000; background:var(--panel); color:var(--text); padding:10px 14px; border-radius:10px}
+    @media (max-width: 860px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid{grid-template-columns: 1fr}
+      .col-4,.col-8,.col-6{grid-column:1/-1}
+      nav ul{display:none}
+      .menu-btn{display:inline-flex}
+    }
+    /* Scroll reveal */
+    [data-reveal]{opacity:0; transform:translateY(12px); transition:opacity .5s ease, transform .5s ease}
+    [data-reveal].visible{opacity:1; transform:none}
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1> Hi, I am Partha Sarathi Banerjee</h1>
-        <p> Contact Details :</p>
-        <p> Email : psbanerjee@physics.iitd.ac.in</p>
-        <p> GitHub Profile : <a href="https://github.com/psbanerjee">https://github.com/psbanerjee</a></p>
-        <p> Google Scholar :<a href="https://scholar.google.com/citations?user=fEFvHNMAAAAJ&hl=en">https://scholar.google.com/citations?user=fEFvHNMAAAAJ&hl=en</a></p>
+  <a href="#content" class="skip-link">Skip to content</a>
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="logo"><span class="dot"></span> <span>Partha S. Banerjee</span></div>
+      <nav aria-label="Primary">
+        <button class="menu-btn btn" aria-controls="menu" aria-expanded="false" onclick="toggleMenu()" style="display:none">Menu</button>
+        <ul id="menu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#teaching">Teaching</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="btn" id="themeToggle" aria-label="Toggle theme" title="Toggle light/dark">🌓 Theme</button>
     </div>
+  </header>
+
+  <main id="content">
+    <section class="hero container">
+      <div class="hero-grid">
+        <div>
+          <span class="badge"><span>🚀</span><span class="mono">Quant Research • Model Risk • Condensed Matter</span></span>
+          <h1 class="name" data-reveal>Partha Sarathi Banerjee</h1>
+          <div class="title" data-reveal>Quantitative Researcher & PhD Candidate (Theoretical Physics, IIT Delhi)</div>
+          <p class="muted" data-reveal>
+            I build and validate mathematical models with a rigorous quantitative approach, spanning
+            Model Risk Management (RWA, Prudent Valuation) and research in quantum condensed matter physics.
+          </p>
+          <div class="hero-cta" data-reveal>
+            <a class="btn" href="Partha_Sarathi_Banerjee_CV.pdf" download>⬇️ Download CV</a>
+            <a class="btn" href="#projects">🌐 View Projects</a>
+          </div>
+          <div class="meta" style="margin-top:14px" data-reveal>
+            <span>📍 Howrah, India</span>
+            <span>•</span>
+            <a class="muted" href="mailto:partha.ae1@gmail.com">partha.ae1@gmail.com</a>
+            <span>•</span>
+            <a class="muted" href="tel:+918240634012">+91 8240634012</a>
+          </div>
+          <div class="socials" style="margin-top:14px" data-reveal>
+            <a href="https://www.linkedin.com/in/psb1996/" aria-label="LinkedIn">🔗 LinkedIn</a>
+            <a href="https://scholar.google.com/citations?user=fEFvHNMAAAAJ&hl=en" aria-label="Google Scholar">📚 Scholar</a>
+            <a href="https://orcid.org/0009-0007-9104-8470" aria-label="ORCiD">🧬 ORCiD</a>
+            <a href="https://arxiv.org/a/0009-0007-9104-8470.html" aria-label="arXiv">🧪 arXiv</a>
+          </div>
+        </div>
+        <aside class="panel" aria-label="Quick overview" data-reveal>
+          <div class="quick">
+            <div class="card">
+              <div class="kicker">Current</div>
+              <div class="muted">PhD, Theoretical Physics (IIT Delhi)</div>
+            </div>
+            <div class="card">
+              <div class="kicker">Latest Experience</div>
+              <div class="muted">Model Risk (Morgan Stanley, 2025)</div>
+            </div>
+            <div class="card">
+              <div class="kicker">Focus</div>
+              <div class="muted">RWA • Prudent Valuation • Electron Transport</div>
+            </div>
+          </div>
+          <div style="margin-top:14px">
+            <span class="tag">Python (NumPy, Pandas, SciPy, Matplotlib)</span>
+            <span class="tag">FORTRAN • C • R • Julia</span>
+            <span class="tag">HPC Simulations</span>
+            <span class="tag">FRTB • VaR • RNIV</span>
+            <span class="tag">LaTeX • Mathematica • MATLAB</span>
+            <span class="tag">Linux • Windows</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about" class="container" aria-labelledby="about-h">
+      <h2 id="about-h">About</h2>
+      <div class="grid">
+        <div class="col-8">
+          <div class="panel" data-reveal>
+            <p>
+              I am a quantitative researcher and a PhD candidate in Theoretical Physics at the Indian Institute of Technology Delhi.
+              My research explores scattering of massless Dirac fermions in modulated graphene structures and its effect on electron transport.
+              In industry, I have contributed to Model Risk Management, including diagnostics, benchmarking, and sensitivity analysis for
+              Tier‑1 Risk & Capital models under FRTB, and validation of AI/ML models for identity verification.
+            </p>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="panel" data-reveal>
+            <div class="kicker">Highlights</div>
+            <ul class="list">
+              <li class="li-item">PhD (2019–present), IIT Delhi — Quantum Condensed Matter</li>
+              <li class="li-item">Model Risk Management, Morgan Stanley (Jan–Jul 2025)</li>
+              <li class="li-item">Publications in <em>Journal of Optics</em> (2024) & <em>Physica Scripta</em> (2024)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="container" aria-labelledby="exp-h">
+      <h2 id="exp-h">Experience</h2>
+      <div class="timeline">
+        <article class="titem" data-reveal>
+          <header><strong>Morgan Stanley</strong> — Model Risk Management (Internship) <span class="muted">| Jan 2025 – Jul 2025</span></header>
+          <ul>
+            <li>Worked on Tier‑1 Risk & Capital models related to RWA and Prudent Valuation; performed model diagnostics, benchmarking, and sensitivity analyses.</li>
+            <li>Contributed to initial validation of AI/ML‑based identity verification models.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="education" class="container" aria-labelledby="edu-h">
+      <h2 id="edu-h">Education</h2>
+      <div class="grid">
+        <div class="col-6">
+          <div class="panel" data-reveal>
+            <strong>Ph.D. in Physics</strong> — Indian Institute of Technology Delhi <span class="muted">(2019 – present)</span>
+            <div class="muted">Specialization: Quantum Condensed Matter Physics</div>
+            <div class="fine">Thesis: Scattering of Massless Dirac Fermions in Modulated Graphene Structures of Different Dimensionality and Its Effect on Electron Transport</div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="panel" data-reveal>
+            <strong>M.Sc. in Physics</strong> — Indian Institute of Technology Delhi <span class="muted">(2017 – 2019)</span>
+            <div class="fine">Thesis: Parametric resonance in presence of noise and dissipation memory kernel</div>
+            <div class="fine">CGPA: 8.512</div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="panel" data-reveal>
+            <strong>B.Sc. (Hons.) in Physics</strong> — Bangabasi College, University of Calcutta <span class="muted">(2014 – 2017)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="container" aria-labelledby="proj-h">
+      <h2 id="proj-h">Selected GitHub Projects</h2>
+      <p class="muted">Actively maintained research & engineering work. <span class="mono">// TODO: Replace the three placeholders below with your repositories.</span></p>
+      <div class="proj-grid" id="projGrid" data-reveal>
+        <!--
+          =====================
+          PROJECTS: EDIT HERE
+          Replace the three <article class="proj"> blocks with your real repositories.
+          =====================
+        -->
+        <article class="proj">
+          <h3>Project One — <span class="muted">Short Title</span></h3>
+          <p>One‑line elevator pitch of what the project does and why it matters. Include outcome or metric if available.</p>
+          <div class="badges">
+            <span class="badge-chip">Python</span>
+            <span class="badge-chip">NumPy</span>
+            <span class="badge-chip">Pandas</span>
+          </div>
+          <p class="meta">
+            <a class="btn" href="https://github.com/psbanerjee/REPO_NAME_1">View on GitHub</a>
+          </p>
+        </article>
+        <article class="proj">
+          <h3>Project Two — <span class="muted">Short Title</span></h3>
+          <p>Describe the problem, your approach, and any quantifiable impact. Note datasets, models, or numerical methods used.</p>
+          <div class="badges">
+            <span class="badge-chip">C</span>
+            <span class="badge-chip">HPC</span>
+            <span class="badge-chip">MPI</span>
+          </div>
+          <p class="meta">
+            <a class="btn" href="https://github.com/psbanerjee/REPO_NAME_2">View on GitHub</a>
+          </p>
+        </article>
+        <article class="proj">
+          <h3>Project Three — <span class="muted">Short Title</span></h3>
+          <p>What you built, how it is different, and where it’s used. Mention reproducibility (env, scripts) for reviewers.</p>
+          <div class="badges">
+            <span class="badge-chip">Julia</span>
+            <span class="badge-chip">DifferentialEquations</span>
+            <span class="badge-chip">Visualization</span>
+          </div>
+          <p class="meta">
+            <a class="btn" href="https://github.com/psbanerjee/REPO_NAME_3">View on GitHub</a>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="publications" class="container" aria-labelledby="pub-h">
+      <h2 id="pub-h">Publications</h2>
+      <div class="grid">
+        <div class="col-6">
+          <div class="panel" data-reveal>
+            <div class="kicker">Journal of Optics (2024)</div>
+            <strong>Electronic analogue of Fourier optics with massless Dirac fermions scattered by quantum dot lattice</strong>
+            <div class="meta">Authors: P. S. Banerjee, R. Marathe, S. Ghosh | DOI: <a href="https://doi.org/10.1088/2040-8986/ad645b">10.1088/2040-8986/ad645b</a></div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="panel" data-reveal>
+            <div class="kicker">Physica Scripta (2024)</div>
+            <strong>Magnetically modulated superconductor–graphene–superconductor (SGS) Josephson junctions and their tunability</strong>
+            <div class="meta">Authors: P. S. Banerjee, R. Marathe, S. Ghosh | DOI: <a href="https://doi.org/10.1088/1402-4896/ad9c23">10.1088/1402-4896/ad9c23</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="container" aria-labelledby="skills-h">
+      <h2 id="skills-h">Skills</h2>
+      <div class="grid">
+        <div class="col-6">
+          <div class="panel" data-reveal>
+            <strong>Programming</strong>
+            <p class="muted">Python (NumPy, Pandas, SciPy, Matplotlib, Seaborn), FORTRAN, C, R, Julia</p>
+            <strong>Data Science</strong>
+            <p class="muted">Linear/Polynomial Regression, Ridge, Lasso, Elastic Net, PCA Regression</p>
+            <strong>Risk</strong>
+            <p class="muted">VaR, Stressed VaR, RNIV, RWA (FRTB), Prudent Valuation</p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="panel" data-reveal>
+            <strong>Tools & OS</strong>
+            <p class="muted">LaTeX, Mathematica, MATLAB, MS Excel • Linux, Windows</p>
+            <strong>Other</strong>
+            <p class="muted">Statistical Analysis & Research Methodologies • Teaching / Mentorship</p>
+            <strong>Languages</strong>
+            <p class="muted">English (Proficient), Bengali (Native), Hindi (Proficient)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="teaching" class="container" aria-labelledby="teach-h">
+      <h2 id="teach-h">Teaching & Academic Service</h2>
+      <div class="panel" data-reveal>
+        <ul class="list">
+          <li class="li-item">Teaching Assistant, IIT Delhi — Numerical & Computational Methods in Research</li>
+          <li class="li-item">Teaching Assistant, IIT Delhi — Statistical Physics</li>
+          <li class="li-item">Teaching Assistant, IIT Delhi — Quantum Mechanics</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="achievements" class="container" aria-labelledby="ach-h">
+      <h2 id="ach-h">Awards & Achievements</h2>
+      <div class="panel" data-reveal>
+        <ul class="list">
+          <li class="li-item">2019 — Qualified JEST and GATE for PhD</li>
+          <li class="li-item">2018 — Qualified Joint CSIR‑UGC NET (LS)</li>
+          <li class="li-item">2017 — State Topper (West Bengal) — National Graduate Physics Examination (IAPT)</li>
+          <li class="li-item">2017 — College Topper — B.Sc. (Hons.), Bangabasi College</li>
+          <li class="li-item">2019 — Qualified JEST for PhD (Rank 125); 2017 — JEST for Integrated PhD (Rank 210); IIT‑JAM for M.Sc. (Rank 109)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="conferences" class="container" aria-labelledby="conf-h">
+      <h2 id="conf-h">Conferences</h2>
+      <div class="panel" data-reveal>
+        <ul class="list">
+          <li class="li-item">Quantum Materials in the Quantum Information Era — 25–29 Sep 2023, MPIPKS, Dresden</li>
+          <li class="li-item">Emergent phenomena in van der Waals heterostructures — 9–12 Jan 2023, TIFR, Mumbai</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="container" aria-labelledby="contact-h">
+      <h2 id="contact-h">Contact</h2>
+      <div class="split">
+        <div class="panel" data-reveal>
+          <p>
+            I’m open to conversations about quant research, model risk, and collaborations in computational physics.
+            The fastest way to reach me is by email.
+          </p>
+          <p>
+            <a class="btn" href="mailto:partha.ae1@gmail.com?subject=Hello%20Partha">✉️ Email Partha</a>
+          </p>
+          <p class="muted">Phone: <a href="tel:+918240634012">+91 8240634012</a></p>
+        </div>
+        <div class="panel" data-reveal>
+          <div class="kicker">References</div>
+          <ul class="list">
+            <li class="li-item">Prof. Rahul Marathe — IIT Delhi — <a href="mailto:maratherahul@physics.iitd.ac.in">maratherahul@physics.iitd.ac.in</a></li>
+            <li class="li-item">Prof. Sankalpa Ghosh — IIT Delhi — <a href="mailto:sankalpa@physics.iitd.ac.in">sankalpa@physics.iitd.ac.in</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <div>© <span id="year"></span> Partha Sarathi Banerjee. All rights reserved.</div>
+    <div class="fine">Last updated <span id="updated"></span> • Built with semantic HTML, accessible components, and a11y‑first design.</div>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if(saved === 'light'){ root.classList.add('light'); }
+    document.getElementById('themeToggle').addEventListener('click', ()=>{
+      root.classList.toggle('light');
+      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    // Mobile nav
+    function toggleMenu(){
+      const menu = document.getElementById('menu');
+      const isOpen = menu.style.display === 'flex';
+      menu.style.display = isOpen ? 'none' : 'flex';
+      menu.style.flexDirection = 'column';
+      menu.style.gap = '10px';
+    }
+
+    // Reveal on scroll
+    const revealEls = document.querySelectorAll('[data-reveal]');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, {threshold: 0.2});
+    revealEls.forEach(el=> io.observe(el));
+
+    // Footer dates
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('updated').textContent = new Date().toLocaleDateString();
+
+    // JSON-LD for SEO
+    const schema = {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      'name': 'Partha Sarathi Banerjee',
+      'jobTitle': 'Quantitative Researcher',
+      'email': 'mailto:partha.ae1@gmail.com',
+      'telephone': '+918240634012',
+      'address': { '@type': 'PostalAddress', 'addressLocality': 'Howrah', 'addressCountry': 'IN' },
+      'affiliation': { '@type': 'CollegeOrUniversity', 'name': 'Indian Institute of Technology Delhi' },
+      'sameAs': [
+        'https://www.linkedin.com/in/psb1996/',
+        'https://scholar.google.com/citations?user=fEFvHNMAAAAJ&hl=en',
+        'https://orcid.org/0009-0007-9104-8470',
+        'https://arxiv.org/a/0009-0007-9104-8470.html'
+      ],
+      'alumniOf': [
+        { '@type': 'CollegeOrUniversity', 'name': 'Indian Institute of Technology Delhi' },
+        { '@type': 'CollegeOrUniversity', 'name': 'University of Calcutta (Bangabasi College)' }
+      ],
+      'knowsAbout': ['Model Risk Management','RWA','Prudent Valuation','FRTB','Quantum Condensed Matter','Electron Transport','Numerical Methods','HPC'],
+      'worksFor': { '@type': 'Organization', 'name': '—' }
+    };
+    const ld = document.createElement('script'); ld.type='application/ld+json'; ld.textContent = JSON.stringify(schema); document.head.appendChild(ld);
+  </script>
 </body>
 </html>
