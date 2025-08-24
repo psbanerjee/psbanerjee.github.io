@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Partha Sarathi Banerjee</title>
+  <meta name="description" content="Contact Partha Sarathi Banerjee — Address, email, and social links. Quantitative Researcher & PhD Candidate, IIT Delhi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1020; --panel:#0f152b; --text:#eef2ff; --muted:#b8c1ec; --brand:#22d3ee; --brand-2:#a78bfa; --ok:#34d399; --shadow:0 6px 18px rgba(0,0,0,.28);
+    }
+    .light{ --bg:#fcfcff; --panel:#ffffff; --text:#0b1020; --muted:#46506b; --brand:#0891b2; --brand-2:#6d28d9; --ok:#059669; --shadow:0 8px 22px rgba(0,0,0,.08); }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background:var(--bg); color:var(--text); line-height:1.6; letter-spacing:.02em; transition:background .3s,color .3s}
+    .container{width:min(1100px,92%); margin-inline:auto}
+    header{position:sticky; top:0; z-index:50; background:var(--panel); box-shadow:var(--shadow)}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .logo{display:flex; align-items:center; gap:10px; font-weight:900}
+    .logo img{height:48px}
+    nav ul{list-style:none; display:flex; gap:18px; margin:0; padding:0}
+    nav a{color:var(--muted); text-decoration:none; font-weight:600}
+    nav a:hover{color:var(--brand)}
+    .theme-toggle{margin-left:12px; cursor:pointer; background:none; border:1px solid color-mix(in srgb, var(--muted) 70%, transparent); color:var(--text); border-radius:10px; padding:8px 10px}
+
+    .hero{background:radial-gradient(1000px 600px at 120% -20%, #3b82f630, transparent 70%), radial-gradient(800px 600px at -10% -10%, #22d3ee30, transparent 70%); padding:42px 0 24px}
+    .hero h1{margin:0 0 8px; font-size:clamp(26px, 4vw, 40px); line-height:1.15}
+    .hero p{margin:0; color:var(--muted)}
+
+    .grid{display:grid; grid-template-columns:2fr 1.2fr; gap:18px; margin:24px 0 32px}
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
+
+    .panel{background:linear-gradient(180deg, color-mix(in srgb, var(--brand) 6%, transparent), var(--panel)); border:1px solid color-mix(in srgb, var(--text) 12%, transparent); border-radius:16px; padding:18px; box-shadow:var(--shadow)}
+    h2{margin:0 0 10px; font-size:clamp(18px, 2.6vw, 24px)}
+    .muted{color:var(--muted)}
+
+    .contact-list{display:grid; gap:14px}
+    .row{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 14px; border-radius:12px; background:linear-gradient(180deg, color-mix(in srgb, var(--text) 6%, transparent), transparent); border:1px solid color-mix(in srgb, var(--text) 10%, transparent)}
+    .row .label{font-weight:700; color:var(--brand)}
+    .inline-actions{display:flex; gap:8px; align-items:center}
+
+    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; border:1px solid color-mix(in srgb, var(--brand) 50%, transparent); background:linear-gradient(180deg, color-mix(in srgb, var(--brand) 25%, transparent), color-mix(in srgb, var(--brand-2) 18%, transparent)); color:#fff; text-decoration:none; font-weight:700}
+    .btn-outline{background:transparent; color:var(--text); border:1px solid color-mix(in srgb, var(--text) 20%, transparent)}
+
+    .social-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:14px}
+    .sbtn{display:flex; align-items:center; gap:10px; padding:14px; border-radius:14px; text-decoration:none; color:var(--text); background:linear-gradient(180deg, var(--panel), color-mix(in srgb, var(--text) 6%, transparent)); border:1px solid color-mix(in srgb, var(--text) 12%, transparent)}
+    .sbtn:hover{transform:translateY(-1px)}
+    .sbtn svg{width:22px; height:22px}
+    .note{font-size:13px; color:var(--muted)}
+
+    footer{padding:28px 0 48px; color:var(--muted); font-size:14px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <img src="logo.png" alt="Logo" />
+        <!-- <span>Partha S. Banerjee</span> -->
+      </div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li> 
+          <!-- <li><a href="experience.html">Experience</a></li>-->
+          <!-- <li><a href="education.html">Education</a></li>-->
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <!-- <li><a href="teaching.html">Teaching</a></li>-->
+          <!-- <li><a href="awards.html">Awards</a></li>-->
+          <!-- <li><a href="conferences.html">Conferences</a></li>-->
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌓</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Contact</h1>
+      <p>Please feel free to ping me anytime if you want to discuss anything like Physics, finance, cricket, history, photography, travelling or even geopolitics. </p>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="grid">
+      <!-- Left: Address & Email -->
+      <div class="panel">
+        <h2>Direct Contact</h2>
+        <div class="contact-list">
+          <div class="row">
+            <div>
+              <div class="label">Address</div>
+              <div class="muted">Room No. MS306, Department of Physics,<br/>Indian Institute of Technology Delhi,<br/>Hauz Khas 110 016, New Delhi, INDIA</div>
+            </div>
+            <div class="inline-actions">
+              <button class="btn-outline" onclick="copyAddress()" aria-label="Copy address">📋 Copy</button>
+              <a class="btn-outline" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Room%20No.%20MS306%2C%20Department%20of%20Physics%2C%20IIT%20Delhi%2C%20Hauz%20Khas%20110%20016%2C%20New%20Delhi%2C%20India">🗺️ Map</a>
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <div class="label">Email</div>
+              <div>
+                <a href="mailto:partha.ae1@gmail.com">partha.ae1@gmail.com</a><br/>
+                <a href="mailto:phz198030@physics.iitd.ac.in">phz198030@physics.iitd.ac.in</a>
+              </div>
+            </div>
+            <div class="inline-actions">
+              <a class="btn-outline" href="mailto:partha.ae1@gmail.com?subject=Hello%20Partha">✉️ Compose</a>
+              <button class="btn-outline" onclick="copyEmails()" aria-label="Copy emails">📋 Copy</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <div class="label">vCard</div>
+              <div class="muted">Save contact to your address book</div>
+            </div>
+            <div class="inline-actions">
+              <button class="btn" onclick="downloadVCard()">⬇️ Download vCard</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Socials -->
+      <aside class="panel">
+        <h2>Social</h2>
+        <div class="social-grid">
+          <a class="sbtn" href="https://github.com/psbanerjee" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12.3c0 5.2 3.4 9.6 8.2 11.1.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.3-1.8-1.3-1.8-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.8 1.8 2.6 2.3.6.1 1.3.1 2 0 .1-.8.4-1.3.7-1.6-2.7-.3-5.6-1.4-5.6-6.3 0-1.4.5-2.5 1.2-3.4-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.4 1.3a11.5 11.5 0 0 1 6.2 0c2.3-1.6 3.3-1.3 3.3-1.3.6 1.7.2 3 .1 3.3.8.9 1.3 2 1.3 3.4 0 4.9-2.9 6-5.6 6.3.4.3.8 1 .8 2.1v3.2c0 .3.2.7.8.6 4.8-1.5 8.2-5.9 8.2-11.1A11.5 11.5 0 0 0 12 .5Z"/></svg>
+            <span>@psbanerjee</span>
+          </a>
+          <a class="sbtn" href="https://www.linkedin.com/in/psb1996/" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.13 1.44-2.13 2.93v5.68H9.35V9h3.42v1.56h.05c.48-.9 1.65-1.85 3.39-1.85 3.63 0 4.3 2.39 4.3 5.49v6.25ZM5.34 7.44a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+            <span>LinkedIn</span>
+          </a>
+          <a class="sbtn" href="https://www.facebook.com/psbphysics/" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.3V12h2.3V9.7c0-2.3 1.4-3.5 3.4-3.5.98 0 2 .17 2 .17v2.2h-1.1c-1.1 0-1.5.7-1.5 1.4V12h2.6l-.41 2.9h-2.2v7A10 10 0 0 0 22 12Z"/></svg>
+            <span>Facebook</span>
+          </a>
+          <a class="sbtn" href="https://www.instagram.com/p_s_banerjee/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0-3.5c1.4 0 1.6 0 2.2.03.6.03 1 .12 1.4.24.4.16.8.36 1.2.7.4.3.6.7.7 1.1.13.4.21.8.24 1.4.03.6.03.8.03 2.2s0 1.6-.03 2.2c-.03.6-.11 1-.24 1.4-.16.4-.36.8-.7 1.2-.3.4-.7.6-1.1.7-.4.13-.8.21-1.4.24-.6.03-.8.03-2.2.03s-1.6 0-2.2-.03c-.6-.03-1-.11-1.4-.24a3.4 3.4 0 0 1-1.2-.7c-.4-.3-.6-.7-.7-1.1-.13-.4-.21-.8-.24-1.4C7.5 13.6 7.5 13.4 7.5 12s0-1.6.03-2.2c.03-.6.11-1 .24-1.4.16-.4.36-.8.7-1.2.3-.4.7-.6 1.1-.7.4-.13.8-.21 1.4-.24C10.4 3.5 10.6 3.5 12 3.5Zm0-1.5c-1.45 0-1.64 0-2.22.03-.58.03-.98.12-1.33.24-.4.15-.74.35-1.07.68-.33.33-.53.67-.68 1.07-.12.35-.21.75-.24 1.33C6.43 6.53 6.43 6.72 6.43 8.17v3.66c0 1.45 0 1.64.03 2.22.03.58.12.98.24 1.33.15.4.35.74.68 1.07.33.33.67.53 1.07.68.35.12.75.21 1.33.24.58.03.77.03 2.22.03s1.64 0 2.22-.03c.58-.03.98-.12 1.33-.24.4-.15.74-.35 1.07-.68.33-.33.53-.67.68-1.07.12-.35.21-.75.24-1.33.03-.58.03-.77.03-2.22V8.17c0-1.45 0-1.64-.03-2.22a5.7 5.7 0 0 0-.24-1.33 3.42 3.42 0 0 0-.68-1.07 3.42 3.42 0 0 0-1.07-.68 5.7 5.7 0 0 0-1.33-.24C13.64 2 13.45 2 12 2Z"/></svg>
+            <span>Instagram</span>
+          </a>
+        </div>
+        <p class="note">Tip: replace the Facebook/Instagram links with your profiles.</p>
+      </aside>
+    </div>
+
+    <!-- Extra CTA -->
+    <div class="panel" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
+      <div>
+        <strong>Prefer email?</strong>
+        <div class="muted">Click to compose a message with your default mail app.</div>
+      </div>
+      <a class="btn" href="mailto:partha.ae1@gmail.com?subject=Inquiry%20from%20Website">✉️ Email Partha</a>
+    </div>
+  </main>
+
+  <footer class="container">
+    <div>© <span id="year"></span> Partha Sarathi Banerjee. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if(saved === 'light'){ root.classList.add('light'); }
+    document.getElementById('themeToggle').addEventListener('click', ()=>{
+      root.classList.toggle('light');
+      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
+    });
+
+    // Utilities: copy to clipboard
+    function copyAddress(){
+      const text = `Room No. MS306, Department of Physics, Indian Institute of Technology Delhi, Hauz Khas 110 016, New Delhi, INDIA`;
+      navigator.clipboard.writeText(text).then(()=> alert('Address copied')).catch(()=>{});
+    }
+    function copyEmails(){
+      const text = `partha.ae1@gmail.com; phz198030@physics.iitd.ac.in`;
+      navigator.clipboard.writeText(text).then(()=> alert('Emails copied')).catch(()=>{});
+    }
+
+    // Generate and download vCard on the fly
+    function downloadVCard(){
+      const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Banerjee;Partha Sarathi;;;\nFN:Partha Sarathi Banerjee\nEMAIL;TYPE=INTERNET,WORK:phz198030@physics.iitd.ac.in\nEMAIL;TYPE=INTERNET,HOME:partha.ae1@gmail.com\nADR;TYPE=WORK:;;Room No. MS306, Department of Physics;New Delhi;Delhi;110016;India\nORG:Indian Institute of Technology Delhi\nTITLE:PhD Candidate, Theoretical Physics\nURL:https://psbanerjee.github.io/\nEND:VCARD`;
+      const blob = new Blob([vcard], {type:'text/vcard'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'Partha_Sarathi_Banerjee.vcf';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=> URL.revokeObjectURL(url), 2000);
+    }
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- JSON-LD for better visibility in search -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Partha Sarathi Banerjee",
+    "url": "https://psbanerjee.github.io/",
+    "email": "mailto:partha.ae1@gmail.com",
+    "affiliation": {
+      "@type": "CollegeOrUniversity",
+      "name": "Indian Institute of Technology Delhi"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Room No. MS306, Department of Physics",
+      "addressLocality": "New Delhi",
+      "addressRegion": "Delhi",
+      "postalCode": "110016",
+      "addressCountry": "IN"
+    },
+    "sameAs": [
+      "https://github.com/psbanerjee",
+      "https://www.linkedin.com/in/psb1996/",
+      "https://facebook.com/",
+      "https://instagram.com/"
+    ]
+  }
+  </script>
+</body>
+</html>
