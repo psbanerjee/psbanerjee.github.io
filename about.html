@@ -3,44 +3,62 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Publications — Partha Sarathi Banerjee</title>
+  <title>About — Partha Sarathi Banerjee</title>
+  <meta name="description" content="About Partha Sarathi Banerjee — Quantitative Researcher & PhD Candidate, IIT Delhi." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0b1020;
-      --panel: #0f152b;
-      --text: #eef2ff;
-      --muted: #b8c1ec;
-      --brand: #22d3ee;
-      --shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    .light {
-      --bg: #fcfcff;
-      --panel: #ffffff;
-      --text: #0b1020;
-      --muted: #46506b;
-      --brand: #0891b2;
-      --shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    body {margin:0;font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s;}
-    header {background:var(--panel);position:sticky;top:0;z-index:1000;box-shadow:var(--shadow);}
-    .container {width:min(1100px,90%);margin:auto;}
-    .nav {display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
-    .logo {display:flex;align-items:center;gap:10px;}
-    .logo img {height:50px;}
-    nav ul {display:flex;gap:20px;list-style:none;margin:0;padding:0;}
-    nav a {color:var(--muted);text-decoration:none;font-weight:600;}
-    nav a:hover {color:var(--brand);}
-    .theme-toggle {margin-left:20px;cursor:pointer;background:none;border:1px solid var(--muted);border-radius:8px;padding:6px 12px;color:var(--text);}
-    h1 {font-size:34px;margin:40px 0 20px;text-align:center;}
-    .pub-list {display:grid;gap:20px;margin-bottom:40px;}
-    .pub {background:var(--panel);padding:20px;border-radius:12px;box-shadow:var(--shadow);}
-    .pub h2 {margin:0 0 8px;font-size:20px;color:var(--brand);}
-    .pub .meta {font-size:14px;color:var(--muted);}
-    .pub a {color:var(--brand);text-decoration:none;font-weight:600;}
-    footer {padding:30px 0;text-align:center;font-size:14px;color:var(--muted);border-top:1px solid var(--muted);}
+    :root{--bg:#0b1020;--panel:#0f152b;--text:#eef2ff;--muted:#b8c1ec;--brand:#22d3ee;--brand-2:#a78bfa;--shadow:0 6px 18px rgba(0,0,0,.28)}
+    .light{--bg:#fcfcff;--panel:#ffffff;--text:#0b1020;--muted:#46506b;--brand:#0891b2;--brand-2:#6d28d9;--shadow:0 8px 22px rgba(0,0,0,.08)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;letter-spacing:.02em;transition:background .3s,color .3s}
+    .container{width:min(1100px,92%);margin-inline:auto}
+    header{position:sticky;top:0;z-index:50;background:var(--panel);box-shadow:var(--shadow)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:900}
+    .logo img{height:48px}
+    nav ul{list-style:none;display:flex;gap:18px;margin:0;padding:0}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    nav a:hover{color:var(--brand)}
+    .theme-toggle{margin-left:12px;cursor:pointer;background:none;border:1px solid color-mix(in srgb, var(--muted) 70%, transparent);color:var(--text);border-radius:10px;padding:8px 10px}
+
+    .hero{background:radial-gradient(1200px 700px at 120% -20%, #3b82f630, transparent 70%),radial-gradient(800px 600px at -10% -10%, #22d3ee30, transparent 70%);padding:26px 0 10px}
+    .hero h1{margin:0;font-size:clamp(26px,4vw,40px)}
+    .hero p{margin:6px 0 0;color:var(--muted)}
+
+    /* Slider */
+    .slider{position:relative;border-radius:18px;overflow:hidden;background:color-mix(in srgb, var(--text) 6%, var(--panel));box-shadow:var(--shadow);margin:22px 0}
+    .slider::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.0),rgba(0,0,0,.08))}
+    .slides{display:flex;height:100%;width:100%;transition:transform .6s cubic-bezier(.22,.61,.36,1);aspect-ratio:16/9}
+    .slide{min-width:100%;height:100%;position:relative}
+    .slide img{width:100%;height:100%;object-fit:cover;display:block}
+
+    .ctrl{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:0 8px}
+    .ctrl button{appearance:none;border:0;background:color-mix(in srgb, var(--panel) 72%, transparent);color:var(--text);width:42px;height:42px;border-radius:50%;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(4px)}
+    .ctrl button:hover{transform:translateY(-1px)}
+
+    .dots{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:8px}
+    .dot{width:10px;height:10px;border-radius:50%;background:color-mix(in srgb, var(--text) 25%, transparent);border:1px solid color-mix(in srgb, var(--text) 30%, transparent);cursor:pointer}
+    .dot[aria-current="true"]{background:var(--brand);border-color:var(--brand)}
+
+    /* Content */
+    .grid{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;margin:24px 0 34px}
+    @media (max-width: 900px){.grid{grid-template-columns:1fr}}
+    .panel{background:linear-gradient(180deg,color-mix(in srgb, var(--brand) 6%, transparent),var(--panel));border:1px solid color-mix(in srgb, var(--text) 12%, transparent);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+    h2{margin:0 0 12px;font-size:clamp(18px,2.6vw,24px)}
+    .muted{color:var(--muted)}
+    .prose{font-size:17px}
+    .prose p{margin:0 0 12px}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{padding:6px 10px;border-radius:999px;border:1px solid color-mix(in srgb, var(--text) 12%, transparent);background:linear-gradient(180deg,var(--panel),color-mix(in srgb, var(--text) 6%, transparent));font-size:13px}
+
+    .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid color-mix(in srgb, var(--brand) 50%, transparent);background:linear-gradient(180deg,color-mix(in srgb, var(--brand) 25%, transparent),color-mix(in srgb, var(--brand-2) 18%, transparent));color:#fff;text-decoration:none;font-weight:700}
+    .btn-outline{background:transparent;color:var(--text);border:1px solid color-mix(in srgb, var(--text) 20%, transparent)}
+
+    footer{padding:28px 0 48px;color:var(--muted);font-size:14px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   </style>
 </head>
 <body>
@@ -50,7 +68,7 @@
         <img src="logo.png" alt="Logo" />
         <!-- <span>Partha S. Banerjee</span> -->
       </div>
-      <nav>
+      <nav aria-label="Primary">
         <ul>
 	  <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li> 
@@ -64,31 +82,153 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
-      <button class="theme-toggle" id="themeToggle">🌓</button>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌓</button>
     </div>
   </header>
 
-  <main class="container">
-    <h1>About Me</h1>
-    <p>I am a student of theoretical physics.</p>
+  <section class="hero">
+    <div class="container">
+      <h1>About Me: </h1>
+      <!-- <p>A quick visual introduction followed by a short narrative. Replace the text below with your own details.</p> -->
+    </div>
+  </section>
 
+  <!-- Slideshow -->
+  <section class="container">
+    <div class="slider" id="slider" role="region" aria-label="Photo slideshow">
+      <div class="slides" id="slides">
+        <div class="slide"><img src="Photos/about-1.jpg" alt="Photo 1 description" loading="eager"></div>
+        <div class="slide"><img src="Photos/JOPT.png" alt="Photo 2 description" loading="lazy"></div>
+        <div class="slide"><img src="Photos/about-2.png" alt="Photo 2 description" loading="lazy"></div>
+        <div class="slide"><img src="Photos/about-3.jpg" alt="Photo 3 description" loading="lazy"></div>
+        <div class="slide"><img src="Photos/about-4.jpg" alt="Photo 4 description" loading="lazy"></div>
+        <div class="slide"><img src="Photos/about-5.jpg" alt="Photo 5 description" loading="lazy"></div>
+      </div>
+      <div class="ctrl" aria-hidden="true">
+        <button id="prev" title="Previous slide" aria-label="Previous slide">◀</button>
+        <button id="next" title="Next slide" aria-label="Next slide">▶</button>
+      </div>
+      <div class="dots" id="dots" aria-label="Slide selectors"></div>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="grid">
+      <!-- Narrative (you will edit this) -->
+      <section class="panel prose">
+        <h2>Short Bio</h2>
+        <style>
+  p {
+    text-align: justify;
+  }
+</style>
+<p>I am a PhD candidate in Condensed Matter Physics (2019–present) at the Indian Institute of Technology, Delhi, under the supervision of Prof. Rahul Marathe and Prof. Sankalpa Ghosh. My doctoral research focuses on quantum transport in graphene-based heterojunctions. In 2024, I published two works: one establishing an electronic analogue of Fourier optics with massless Dirac fermions, and another exploring the tunability of Josephson current in superconductor–graphene junctions. I also presented my work at the Max Planck Institute for the Physics of Complex Systems, Dresden.</p>
+
+<p>Alongside my PhD, I worked in the Model Risk Management team at Morgan Stanley, Mumbai (2025). My role included validating financial models across domains such as Market Risk RWA and Prudent Valuation, as well as contributing to AI/ML model validations. This involved extensive diagnostic testing, sensitivity analysis, benchmarking, and outcome analysis.</p>
+
+<p>Before my PhD, I completed an MSc in Physics (2017–2019) at IIT Delhi, where I developed a strong interest in theoretical physics and worked on nonequilibrium statistical mechanics for my master’s thesis under Prof. Rahul Marathe. Prior to that, I earned my B.Sc. (Hons.) in Physics (2012–2014) from Bangabasi College, where I was introduced to programming and computational approaches in physics, which shaped my long-term research interests in optics and condensed matter physics.</p>
+
+<p>My academic journey began at Baluhati High School, where I completed my schooling up to Class XII (2014). It was here that my passion for mathematics and physics first took root. Early experiments in chemistry also taught me the joy of hands-on science, even though my path ultimately focused on physics and computation.</p>
+
+<p>Beyond academics, I am deeply passionate about history, photography, and exploring historical places. These pursuits complement my scientific curiosity and give me new perspectives on culture, time, and human creativity.</p>
+        <!-- <p> Since the school days, I was always interested in mathematics and physics. I have always tried to find patterns and tried to analyze everything using mathematics. I have studied till class XII in my school Baluhati High School in my village Baluhati. It has given me opportunies to grow passion in me about Physics, Mathematics and Chemistry. Althogh I did not want to persue a carrier in chemistry, performing experiments of inorganic chemistry gave me so much fun.  </p>
+        <p> After that, I joined Bangabasi College for my B.Sc (Hons.) in Physics. This time gave me exposure to various topics in Physics, like Quantum Mechanics, Statistical Physics, Mathematical Physics, Electronics, Electrodynamics etc. This time I developed my strong interest to persue research as a carrier. I am extremely grateful to be around extremely passionate group of people. I first learned computer programming during this time and I started learning how to solve any problem in physics using computing. I understood various calculations where analytical calculation can be replaced with program to solve problems. I was most interested to study optics/photonics in the next phases of my life.</p>
+        <p> After my graduation, I joined Indian Institute of Technology, Delhi to study MSc in Physics. This was a unique opportunity to be among extremely intelligent and passionate minds in India. This time I developed my strong passion to study theoretical physics. For my masters thesis, I studied Non-Equllibrium Statical Mechanics with Prof. Rahul Marathe. I am extremely grateful for his guidance during this time. </p>
+        <p> After my masters, I continued in Indian Institute of Technology, Delhi for my PhD in Condensed Matter Physics under the supervision of Prof. Rahul Marathe and Prof. Sankalpa Ghosh. I studied quantum transport in graphene based heterojunctions for my thesis. In 2024, I published two of my research works. In my first work, I have developed electronic analogue of Fourier Optics with massless Dirac fermions. The idea was to exploit the analogy between the movement of electrons in two dimensional material, subjected to electric and magnetic (EM) fields and the propagation of electromagnetic waves in a dielectric medium with varied refractive index. I have further shown the analogy between scattering of graphene electrons and Fraunhofer diffraction in optics. I have also presented this work in Max Planck Institute for the Physics of Complex Systems in Dresden, Germany. </p>
+        <p> In my second work, I have explored the tunability of electron transport in superconductor-graphene junctions. We have numerically studied the effect of electrostatic and magnetic vector potential barriers on the Josephson current. Such barriers can be experimentally made by puttng gate potentials and magnetic tunnel junctions. We have shown that the Josephson current gets significantly modified by putting such barriers. We have also shown that the barriers are analogous to mediums of different refracting index for a charged quasiparticle in these systems. </p>
+        <p> During my PhD, I have also had the opportunity to work in the Model Risk management Team in Morgan Stanley(Mumbai). I have had opportunity to work on validation of financial models in various domains, e.g. Market Risk RWA, Non-Financial Risk. </p>
+        <p>I have  Researcher and PhD candidate at IIT Delhi focused on Model Risk (RWA, Prudent Valuation) and quantum condensed matter. My work blends rigorous mathematics, physics intuition, and modern computation. I have worked on revalidation of Market Risk RWA and Prudent Valuation model and initial validation of AI/ML based face detection models. For these, I have worked extensively on MRM independent tests which includes model diagnostic testing, sensitivity analysis, benchmarking and outcome analysis. During this time I was fortunate to be around many talented and knowledgable people from whom I gained so much knowledge.  </p> -->
+      </section>
+
+      <!-- Quick facts / highlights -->
+      <aside class="panel">
+        <h2>Quick Facts</h2>
+        <div class="chips">
+          <span class="chip">PhD (Theoretical Physics), IIT Delhi</span> 
+          <span class="chip">Model Validation @ Morgan Stanley</span> 
+          <span class="chip">Josephson junctions</span> 
+          <span class="chip">Andreev reflections</span> 
+          <span class="chip">Publications in 2024</span>
+          <span class="chip">MSc, IIT Delhi</span> 
+          <span class="chip">Andreev reflections</span> 
+          <span class="chip">New Delhi, India</span>
+        </div>
+      </aside>
+    </div>
   </main>
 
-  <footer>
-    © <span id="year"></span> Partha Sarathi Banerjee. All rights reserved.
+  <footer class="container">
+    <div>© <span id="year"></span> Partha Sarathi Banerjee. All rights reserved.</div>
   </footer>
 
   <script>
-    const root = document.documentElement;
-    const saved = localStorage.getItem('theme');
-    if (saved === 'light') root.classList.add('light');
+    // Theme toggle
+    const root=document.documentElement;const saved=localStorage.getItem('theme');if(saved==='light'){root.classList.add('light')}document.getElementById('themeToggle').addEventListener('click',()=>{root.classList.toggle('light');localStorage.setItem('theme',root.classList.contains('light')?'light':'dark')});
 
-    document.getElementById('themeToggle').addEventListener('click', () => {
-      root.classList.toggle('light');
-      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
-    });
+    // Slider logic
+    const slides=document.getElementById('slides');
+    const slider=document.getElementById('slider');
+    const dotsWrap=document.getElementById('dots');
+    const total=slides.children.length; let i=0; let timer=null; let hovering=false; let userInteracted=false;
 
+    // Build dots
+    for(let d=0; d<total; d++){
+      const dot=document.createElement('button');
+      dot.className='dot'; dot.type='button'; dot.setAttribute('aria-label',`Go to slide ${d+1}`);
+      dot.addEventListener('click',()=>{go(d,true)}); dotsWrap.appendChild(dot);
+    }
+
+    function update(){
+      slides.style.transform=`translateX(-${i*100}%)`;
+      [...dotsWrap.children].forEach((dot,idx)=>dot.setAttribute('aria-current', String(idx===i)));
+    }
+    function go(n, interacted=false){ i=(n+total)%total; userInteracted = userInteracted || interacted; update(); }
+
+    function next(){ go(i+1) } function prev(){ go(i-1) }
+
+    document.getElementById('next').addEventListener('click',()=>next());
+    document.getElementById('prev').addEventListener('click',()=>prev());
+
+    // Autoplay with respect for reduced motion
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function start(){ if(prefersReduced) return; stop(); timer=setInterval(()=>{ if(!hovering && !document.hidden) next(); }, 5000) }
+    function stop(){ if(timer) clearInterval(timer) }
+
+    slider.addEventListener('mouseenter',()=>{hovering=true});
+    slider.addEventListener('mouseleave',()=>{hovering=false});
+
+    document.addEventListener('visibilitychange',()=>{ if(document.hidden) stop(); else start(); });
+    start();
+
+    // Keyboard support
+    slider.tabIndex=0;
+    slider.addEventListener('keydown',(e)=>{ if(e.key==='ArrowRight') next(); if(e.key==='ArrowLeft') prev(); });
+
+    // Basic swipe support
+    let sx=0, dx=0, touching=false;
+    slider.addEventListener('pointerdown',(e)=>{touching=true; sx=e.clientX});
+    slider.addEventListener('pointermove',(e)=>{ if(!touching) return; dx=e.clientX - sx; });
+    slider.addEventListener('pointerup',()=>{ if(Math.abs(dx)>40) { dx<0 ? next() : prev(); } touching=false; dx=0; });
+
+    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- JSON-LD for better visibility in search -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Partha Sarathi Banerjee",
+    "url": "https://psbanerjee.github.io/",
+    "sameAs": [
+      "https://github.com/psbanerjee",
+      "https://www.linkedin.com/in/psb1996/",
+      "https://scholar.google.com/citations?user=fEFvHNMAAAAJ&hl=en",
+      "https://orcid.org/0009-0007-9104-8470"
+    ]
+  }
   </script>
 </body>
 </html>
+
