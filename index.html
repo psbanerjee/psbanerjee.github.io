@@ -3,8 +3,8 @@
 
 <!-- ═══════════════════════════════════════════════════════════
      Partha Sarathi Banerjee — Academic Portfolio
-     Single-file redesign | All content preserved exactly
-     Design: Scholarly Precision aesthetic
+     Architecture: True panel-based SPA (tab isolation)
+     Design: Refined graphite-sapphire palette
      ═══════════════════════════════════════════════════════════ -->
 
 <!-- Google tag (gtag.js) -->
@@ -37,56 +37,66 @@
   <style>
     /* ═══════════════════════════════════════════════
        DESIGN TOKENS
-       Dark: deep slate-indigo + warm amber
-       Light: warm cream + deep navy
+       Dark: deep graphite-navy + muted sapphire
+       Light: warm ivory + academic indigo-blue
        ═══════════════════════════════════════════════ */
-    :root {
-      /* Dark mode (default) */
-      --bg:          #08090f;
-      --bg-2:        #0e1018;
-      --surface:     #12141e;
-      --surface-2:   #181a26;
-      --border:      rgba(255,255,255,0.07);
-      --border-mid:  rgba(255,255,255,0.12);
-      --text:        #ede8df;
-      --text-dim:    #9a9385;
-      --text-muted:  #635d55;
-      --accent:      #c9a84c;     /* warm gold */
-      --accent-2:    #e6c880;     /* lighter gold */
-      --accent-glow: rgba(201,168,76,0.18);
-      --accent-glow-2: rgba(201,168,76,0.08);
-      --red:         #e07070;
-      --green:       #6db88c;
+     :root {
+  /* Dark mode (default) */
+  --bg:          #08090f;
+  --bg-2:        #0e1018;
+  --surface:     #12141e;
+  --surface-2:   #181a26;
+  --border:      rgba(255,255,255,0.07);
+  --border-mid:  rgba(255,255,255,0.12);
 
-      --nav-h:       68px;
-      --radius:      14px;
-      --radius-lg:   22px;
-      --radius-xl:   30px;
-      --shadow-sm:   0 2px 8px rgba(0,0,0,0.4);
-      --shadow:      0 8px 24px rgba(0,0,0,0.5);
-      --shadow-lg:   0 20px 48px rgba(0,0,0,0.6);
+  --text:        #ede8df;
+  --text-dim:    #9a9385;
+  --text-muted:  #635d55;
 
-      --transition:  0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
+  --accent:      #c9a84c;
+  --accent-2:    #e6c880;
 
-    .light {
-      --bg:          #faf8f3;
-      --bg-2:        #f4f1e9;
-      --surface:     #ffffff;
-      --surface-2:   #f8f6f0;
-      --border:      rgba(0,0,0,0.07);
-      --border-mid:  rgba(0,0,0,0.12);
-      --text:        #1a1610;
-      --text-dim:    #4a4235;
-      --text-muted:  #8a7d6a;
-      --accent:      #9b7a1f;
-      --accent-2:    #b8940f;
-      --accent-glow: rgba(155,122,31,0.12);
-      --accent-glow-2: rgba(155,122,31,0.06);
-      --shadow-sm:   0 2px 8px rgba(0,0,0,0.06);
-      --shadow:      0 8px 24px rgba(0,0,0,0.08);
-      --shadow-lg:   0 20px 48px rgba(0,0,0,0.10);
-    }
+  --accent-glow: rgba(201,168,76,0.18);
+  --accent-glow-2: rgba(201,168,76,0.08);
+
+  --red:         #e07070;
+  --green:       #6db88c;
+
+  --nav-h:       68px;
+  --radius:      14px;
+  --radius-lg:   22px;
+  --radius-xl:   30px;
+
+  --shadow-sm:   0 2px 8px rgba(0,0,0,0.4);
+  --shadow:      0 8px 24px rgba(0,0,0,0.5);
+  --shadow-lg:   0 20px 48px rgba(0,0,0,0.6);
+
+  --transition:  0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.light {
+  --bg:          #faf8f3;
+  --bg-2:        #f4f1e9;
+  --surface:     #ffffff;
+  --surface-2:   #f8f6f0;
+
+  --border:      rgba(0,0,0,0.07);
+  --border-mid:  rgba(0,0,0,0.12);
+
+  --text:        #1a1610;
+  --text-dim:    #4a4235;
+  --text-muted:  #8a7d6a;
+
+  --accent:      #9b7a1f;
+  --accent-2:    #b8940f;
+
+  --accent-glow: rgba(155,122,31,0.12);
+  --accent-glow-2: rgba(155,122,31,0.06);
+
+  --shadow-sm:   0 2px 8px rgba(0,0,0,0.06);
+  --shadow:      0 8px 24px rgba(0,0,0,0.08);
+  --shadow-lg:   0 20px 48px rgba(0,0,0,0.10);
+}
 
     /* ═══════════════════════════════════════════════
        RESET & BASE
@@ -94,9 +104,8 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html {
-      scroll-behavior: smooth;
-      scroll-padding-top: calc(var(--nav-h) + 16px);
       font-size: 16px;
+      height: 100%;
     }
 
     body {
@@ -106,17 +115,19 @@
       line-height: 1.65;
       letter-spacing: 0.01em;
       transition: background var(--transition), color var(--transition);
-      overflow-x: hidden;
+      /* Body must not scroll — panels handle their own scroll */
+      overflow: hidden;
+      height: 100%;
     }
 
-    /* Subtle background texture */
+    /* Ambient background texture — fixed, below everything */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       background-image:
         radial-gradient(ellipse 900px 600px at 80% -10%, var(--accent-glow-2), transparent),
-        radial-gradient(ellipse 600px 400px at -10% 70%, rgba(100,120,200,0.04), transparent);
+        radial-gradient(ellipse 600px 400px at -10% 70%, rgba(80,110,180,0.04), transparent);
       pointer-events: none;
       z-index: 0;
     }
@@ -137,21 +148,21 @@
       clip: rect(0,0,0,0); white-space: nowrap; border: 0;
     }
 
-    /* Reveal animation - triggered by IntersectionObserver */
+    /* Reveal animation — triggered per-panel on first activation */
     .reveal {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.72s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                  transform 0.72s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: translateY(22px);
+      transition: opacity 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
     .reveal.visible { opacity: 1; transform: none; }
 
     /* Stagger delays */
-    .reveal-d1 { transition-delay: 0.08s; }
-    .reveal-d2 { transition-delay: 0.16s; }
-    .reveal-d3 { transition-delay: 0.24s; }
-    .reveal-d4 { transition-delay: 0.32s; }
-    .reveal-d5 { transition-delay: 0.40s; }
+    .reveal-d1 { transition-delay: 0.07s; }
+    .reveal-d2 { transition-delay: 0.14s; }
+    .reveal-d3 { transition-delay: 0.21s; }
+    .reveal-d4 { transition-delay: 0.28s; }
+    .reveal-d5 { transition-delay: 0.35s; }
 
     /* Section label */
     .section-label {
@@ -192,14 +203,14 @@
       z-index: 900;
       height: var(--nav-h);
       background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      transition: background var(--transition), box-shadow var(--transition), border-color var(--transition);
+      border-bottom: 1px solid var(--border-mid);
+      transition: background var(--transition), box-shadow var(--transition);
     }
 
     #navbar.scrolled {
-      background: color-mix(in srgb, var(--bg) 92%, transparent);
-      backdrop-filter: blur(16px) saturate(1.4);
-      -webkit-backdrop-filter: blur(16px) saturate(1.4);
+      background: color-mix(in srgb, var(--bg) 94%, transparent);
+      backdrop-filter: blur(18px) saturate(1.3);
+      -webkit-backdrop-filter: blur(18px) saturate(1.3);
       box-shadow: var(--shadow-sm);
     }
 
@@ -252,6 +263,7 @@
       border-radius: 8px;
       transition: color 0.2s, background 0.2s;
       letter-spacing: 0.02em;
+      cursor: pointer;
     }
 
     .nav-links a:hover {
@@ -330,12 +342,12 @@
       position: fixed;
       top: var(--nav-h); left: 0; right: 0;
       background: var(--bg);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--border-mid);
       z-index: 899;
       padding: 16px 0 24px;
       transform: translateY(-100%);
-      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                  opacity 0.35s ease;
+      transition: transform 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  opacity 0.32s ease;
       opacity: 0;
     }
 
@@ -353,6 +365,7 @@
       text-decoration: none;
       border-left: 2px solid transparent;
       transition: all 0.2s;
+      cursor: pointer;
     }
 
     .mobile-menu a:hover,
@@ -363,22 +376,64 @@
     }
 
     /* ═══════════════════════════════════════════════
-       SECTION BASE
+       PANEL HOST — TRUE TAB ISOLATION ARCHITECTURE
        ═══════════════════════════════════════════════ */
-    section {
-      position: relative;
+
+    /* The panel host fills the entire viewport below the navbar.
+       overflow:hidden ensures NOTHING from sibling panels leaks through.
+       This is the core architectural fix. */
+    #panel-host {
+      position: fixed;
+      top: var(--nav-h);
+      left: 0; right: 0; bottom: 0;
+      overflow: hidden;
       z-index: 1;
     }
 
+    /* Each section is an isolated, independently scrollable panel.
+       Inactive panels are invisible and non-interactive.
+       Scrolling inside one panel NEVER reaches another. */
+    #panel-host section {
+      position: absolute;
+      inset: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+      /* Start invisible */
+      opacity: 0;
+      pointer-events: none;
+      /* Subtle fade transition */
+      transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      /* Default background */
+      background: var(--bg);
+    }
+
+    /* The active panel is fully visible and scrollable */
+    #panel-host section.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* Alternating backgrounds — each panel is fully self-contained */
+    #home         { background: var(--bg); }
+    #about        { background: var(--bg-2); }
+    #projects     { background: var(--bg); }
+    #publications { background: var(--bg-2); }
+    #thesis       { background: var(--bg); }
+    #contact      { background: var(--bg-2); }
+
     /* ═══════════════════════════════════════════════
-       HOME SECTION
+       HOME PANEL
        ═══════════════════════════════════════════════ */
     #home {
-      min-height: 100svh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: calc(var(--nav-h) + 48px) 0 80px;
+    }
+
+    /* Wraps hero content to allow vertical centering */
+    #home .container {
+      padding-top: calc(var(--nav-h) + 90px);
+      padding-bottom: 64px;
     }
 
     .hero-grid {
@@ -387,9 +442,6 @@
       gap: 72px;
       align-items: center;
     }
-
-    /* Left: text */
-    .hero-text {}
 
     .hero-eyebrow {
       display: inline-flex;
@@ -506,7 +558,7 @@
       padding: 12px 24px;
       border-radius: 40px;
       background: var(--accent);
-      color: #0a0805;
+      color: #ffffff;
       font-size: 14px;
       font-weight: 600;
       text-decoration: none;
@@ -546,9 +598,7 @@
     }
 
     /* Right: Profile card */
-    .hero-card {
-      position: relative;
-    }
+    .hero-card { position: relative; }
 
     .hero-card::before {
       content: '';
@@ -556,7 +606,7 @@
       inset: -1px;
       border-radius: calc(var(--radius-xl) + 1px);
       background: linear-gradient(135deg, var(--accent), transparent 50%, var(--accent) 100%);
-      opacity: 0.3;
+      opacity: 0.22;
       z-index: -1;
     }
 
@@ -631,13 +681,11 @@
     }
 
     /* ═══════════════════════════════════════════════
-       ABOUT SECTION
+       ABOUT PANEL
        ═══════════════════════════════════════════════ */
-    #about {
-      padding: 120px 0;
-      background: var(--bg-2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+    #about .container {
+      padding-top: 10px;
+      padding-bottom: 80px;
     }
 
     .about-grid {
@@ -647,10 +695,10 @@
       align-items: start;
     }
 
-    /* Slideshow */
+    /* Sticky slideshow — top offset is relative to PANEL (no nav-h needed) */
     .slideshow-wrap {
       position: sticky;
-      top: calc(var(--nav-h) + 24px);
+      top: 24px;
     }
 
     .slideshow {
@@ -693,7 +741,7 @@
       width: 40px; height: 40px;
       border-radius: 50%;
       border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(10,9,15,0.55);
+      background: rgba(10,12,20,0.55);
       color: white;
       font-size: 14px;
       display: grid;
@@ -704,7 +752,7 @@
     }
 
     .slide-btn:hover {
-      background: rgba(201,168,76,0.45);
+      background: rgba(110,149,212,0.45);
       transform: scale(1.08);
     }
 
@@ -732,8 +780,6 @@
     }
 
     /* Bio */
-    .about-bio { }
-
     .bio-prose {
       font-size: 16px;
       color: var(--text-dim);
@@ -794,10 +840,11 @@
     }
 
     /* ═══════════════════════════════════════════════
-       PROJECTS SECTION
+       PROJECTS PANEL
        ═══════════════════════════════════════════════ */
-    #projects {
-      padding: 120px 0;
+    #projects .container {
+      padding-top: 10px;
+      padding-bottom: 80px;
     }
 
     .projects-grid {
@@ -896,10 +943,7 @@
       border-top: 1px solid var(--border);
     }
 
-    .project-link:hover {
-      gap: 10px;
-      opacity: 1;
-    }
+    .project-link:hover { gap: 10px; opacity: 1; }
 
     .project-link svg {
       width: 14px; height: 14px;
@@ -909,13 +953,11 @@
     .project-link:hover svg { transform: translateX(3px); }
 
     /* ═══════════════════════════════════════════════
-       PUBLICATIONS SECTION
+       PUBLICATIONS PANEL
        ═══════════════════════════════════════════════ */
-    #publications {
-      padding: 120px 0;
-      background: var(--bg-2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+    #publications .container {
+      padding-top: 10px;
+      padding-bottom: 80px;
     }
 
     .pub-list {
@@ -946,7 +988,7 @@
       width: 3px;
       height: 100%;
       background: var(--accent);
-      opacity: 0.5;
+      opacity: 0.45;
       transition: opacity 0.25s;
     }
 
@@ -984,8 +1026,8 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--red);
-      background: rgba(224,112,112,0.1);
-      border: 1px solid rgba(224,112,112,0.2);
+      background: rgba(224,123,123,0.1);
+      border: 1px solid rgba(224,123,123,0.2);
       padding: 3px 10px;
       border-radius: 4px;
     }
@@ -1005,10 +1047,7 @@
       transition: color 0.2s;
     }
 
-    .pub-title a:hover {
-      color: var(--accent);
-      opacity: 1;
-    }
+    .pub-title a:hover { color: var(--accent); opacity: 1; }
 
     .pub-authors {
       font-size: 14px;
@@ -1016,16 +1055,9 @@
       margin-bottom: 20px;
     }
 
-    .pub-authors strong {
-      color: var(--text);
-      font-weight: 600;
-    }
+    .pub-authors strong { color: var(--text); font-weight: 600; }
 
-    .pub-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
+    .pub-links { display: flex; flex-wrap: wrap; gap: 10px; }
 
     .pub-btn {
       display: inline-flex;
@@ -1051,32 +1083,18 @@
       color: var(--text-dim);
     }
 
-    .pub-btn:hover {
-      transform: translateY(-2px);
-      opacity: 1;
-    }
+    .pub-btn:hover { transform: translateY(-2px); opacity: 1; }
+    .pub-btn-arxiv:hover { background: var(--accent-glow); box-shadow: 0 4px 16px var(--accent-glow); }
+    .pub-btn-doi:hover { color: var(--text); }
 
-    .pub-btn-arxiv:hover {
-      background: var(--accent-glow);
-      box-shadow: 0 4px 16px var(--accent-glow);
-    }
-
-    .pub-btn-doi:hover {
-      color: var(--text);
-      border-color: var(--border-mid);
-    }
-
-    /* Scholar link */
-    .scholar-link-wrap {
-      margin-top: 36px;
-      text-align: center;
-    }
+    .scholar-link-wrap { margin-top: 36px; text-align: center; }
 
     /* ═══════════════════════════════════════════════
-       THESIS SECTION
+       THESIS PANEL
        ═══════════════════════════════════════════════ */
-    #thesis {
-      padding: 120px 0;
+    #thesis .container {
+      padding-top: 10px;
+      padding-bottom: 80px;
     }
 
     .thesis-header {
@@ -1117,7 +1135,6 @@
       justify-content: flex-end;
     }
 
-    /* PDF Viewer */
     .pdf-frame-wrap {
       position: relative;
       border-radius: var(--radius-lg);
@@ -1136,12 +1153,11 @@
     }
 
     /* ═══════════════════════════════════════════════
-       CONTACT SECTION
+       CONTACT PANEL
        ═══════════════════════════════════════════════ */
-    #contact {
-      padding: 120px 0;
-      background: var(--bg-2);
-      border-top: 1px solid var(--border);
+    #contact .container {
+      padding-top: 10px;
+      padding-bottom: 0;
     }
 
     .contact-grid {
@@ -1204,15 +1220,8 @@
       line-height: 1.6;
     }
 
-    .contact-value a {
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    .contact-value a:hover {
-      color: var(--accent);
-      opacity: 1;
-    }
+    .contact-value a { color: var(--text); text-decoration: none; }
+    .contact-value a:hover { color: var(--accent); opacity: 1; }
 
     .contact-actions {
       display: flex;
@@ -1294,17 +1303,16 @@
       flex-wrap: wrap;
     }
 
-    .email-cta-text { }
     .email-cta-text strong { font-size: 15px; color: var(--text); }
     .email-cta-text p { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
 
     /* ═══════════════════════════════════════════════
-       FOOTER
+       FOOTER — lives inside Contact panel
        ═══════════════════════════════════════════════ */
     footer {
-      padding: 40px 0 48px;
+      margin-top: 48px;
+      padding: 36px 0 44px;
       border-top: 1px solid var(--border);
-      background: var(--bg);
     }
 
     .footer-inner {
@@ -1315,15 +1323,9 @@
       flex-wrap: wrap;
     }
 
-    .footer-copy {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
+    .footer-copy { font-size: 13px; color: var(--text-muted); }
 
-    .footer-links {
-      display: flex;
-      gap: 20px;
-    }
+    .footer-links { display: flex; gap: 20px; }
 
     .footer-links a {
       font-size: 13px;
@@ -1332,10 +1334,7 @@
       transition: color 0.2s;
     }
 
-    .footer-links a:hover {
-      color: var(--accent);
-      opacity: 1;
-    }
+    .footer-links a:hover { color: var(--accent); opacity: 1; }
 
     /* ═══════════════════════════════════════════════
        RESPONSIVE
@@ -1388,20 +1387,21 @@
       .hamburger { display: flex; }
       .mobile-menu { display: block; }
 
-      #home { padding-top: calc(var(--nav-h) + 32px); padding-bottom: 60px; }
+      #home .container { padding-top: 40px; padding-bottom: 48px; }
 
       .hero-name { letter-spacing: -0.01em; }
 
       .section-title { margin-bottom: 36px; }
 
-      #about, #projects, #publications, #thesis, #contact { padding: 80px 0; }
+      #about .container,
+      #projects .container,
+      #publications .container,
+      #thesis .container,
+      #contact .container { padding-top: 52px; padding-bottom: 60px; }
 
       .pub-card { padding: 22px 20px; }
-
       .pub-title { font-size: 18px; }
-
       .contact-card { padding: 22px 20px; }
-
       .social-links-grid { grid-template-columns: 1fr; }
     }
 
@@ -1450,7 +1450,7 @@
        ══════════════════════════════════ -->
   <header id="navbar" role="banner">
     <div class="container nav-inner">
-      <a class="nav-logo" href="#home" aria-label="Home">
+      <a class="nav-logo" href="#home" aria-label="Home" data-panel="home">
         <img src="logo.png" alt="PSB" />
       </a>
 
@@ -1485,502 +1485,508 @@
   </div>
 
   <!-- ══════════════════════════════════
-       HOME
+       PANEL HOST — All sections live here.
+       Only one section (.active) is visible at a time.
+       Each section scrolls independently.
        ══════════════════════════════════ -->
-  <section id="home" aria-label="Introduction">
-    <div class="container">
-      <div class="hero-grid">
+  <div id="panel-host">
 
-        <!-- Text -->
-        <div class="hero-text">
-          <p class="hero-eyebrow reveal">Theoretical Physics &amp; Quantitative Research</p>
+    <!-- ══════════════════════════════════
+         HOME PANEL
+         ══════════════════════════════════ -->
+    <section id="home" aria-label="Introduction">
+      <div class="container">
+        <div class="hero-grid">
 
-          <h1 class="hero-name reveal reveal-d1">
-            Dr. Partha<br>Sarathi<br><em>Banerjee</em>
-          </h1>
+          <!-- Text -->
+          <div class="hero-text">
+            <p class="hero-eyebrow reveal">Theoretical Physics &amp; Quantitative Research</p>
 
-          <p class="hero-title reveal reveal-d2">
-            PhD in Theoretical Condensed Matter Physics<br>
-            Indian Institute of Technology, Delhi
-          </p>
+            <h1 class="hero-name reveal reveal-d1">
+              Dr. Partha<br>Sarathi<br><em>Banerjee</em>
+            </h1>
 
-          <a href="mailto:partha.ae1@gmail.com" class="hero-email reveal reveal-d3">
-            partha.ae1@gmail.com
-          </a>
+            <p class="hero-title reveal reveal-d2">
+              PhD in Theoretical Condensed Matter Physics<br>
+              Indian Institute of Technology, Delhi
+            </p>
 
-          <div class="hero-socials reveal reveal-d3">
-            <a class="social-pill" href="https://www.linkedin.com/in/psb1996/" target="_blank" rel="noopener" aria-label="LinkedIn profile">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.13 1.44-2.13 2.93v5.68H9.35V9h3.42v1.56h.05c.48-.9 1.65-1.85 3.39-1.85 3.63 0 4.3 2.39 4.3 5.49v6.25ZM5.34 7.44a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
-              LinkedIn
+            <a href="mailto:partha.ae1@gmail.com" class="hero-email reveal reveal-d3">
+              partha.ae1@gmail.com
             </a>
-            <a class="social-pill" href="https://scholar.google.com/citations?user=fEFvHNMAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar profile">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg>
-              Google Scholar
-            </a>
-            <a class="social-pill" href="https://orcid.org/0009-0007-9104-8470" target="_blank" rel="noopener" aria-label="ORCiD profile">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c2.359 0 3.981-1.528 3.981-3.722 0-2.016-1.475-3.722-3.981-3.722h-2.297z"/></svg>
-              ORCiD
-            </a>
-            <a class="social-pill" href="https://arxiv.org/a/0009-0007-9104-8470.html" target="_blank" rel="noopener" aria-label="arXiv profile">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.57 4.13L0 7.56l8.54 8.57L2.57 4.13zm.72-.49L12 17.5l8.71-13.86H3.29zM21.43 4.13l-5.97 12-1.46-2.32 7.43-9.68zm-1.14-.49L12 17l-8.29-13.36h16.58z"/></svg>
-              arXiv
-            </a>
-            <a class="social-pill" href="https://github.com/psbanerjee" target="_blank" rel="noopener" aria-label="GitHub profile">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12.3c0 5.2 3.4 9.6 8.2 11.1.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.3-1.8-1.3-1.8-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.8 1.8 2.6 2.3.6.1 1.3.1 2 0 .1-.8.4-1.3.7-1.6-2.7-.3-5.6-1.4-5.6-6.3 0-1.4.5-2.5 1.2-3.4-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.4 1.3a11.5 11.5 0 0 1 6.2 0c2.3-1.6 3.3-1.3 3.3-1.3.6 1.7.2 3 .1 3.3.8.9 1.3 2 1.3 3.4 0 4.9-2.9 6-5.6 6.3.4.3.8 1 .8 2.1v3.2c0 .3.2.7.8.6 4.8-1.5 8.2-5.9 8.2-11.1A11.5 11.5 0 0 0 12 .5Z"/></svg>
-              GitHub
-            </a>
+
+            <div class="hero-socials reveal reveal-d3">
+              <a class="social-pill" href="https://www.linkedin.com/in/psb1996/" target="_blank" rel="noopener" aria-label="LinkedIn profile">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.13 1.44-2.13 2.93v5.68H9.35V9h3.42v1.56h.05c.48-.9 1.65-1.85 3.39-1.85 3.63 0 4.3 2.39 4.3 5.49v6.25ZM5.34 7.44a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+                LinkedIn
+              </a>
+              <a class="social-pill" href="https://scholar.google.com/citations?user=fEFvHNMAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar profile">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg>
+                Google Scholar
+              </a>
+              <a class="social-pill" href="https://orcid.org/0009-0007-9104-8470" target="_blank" rel="noopener" aria-label="ORCiD profile">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c2.359 0 3.981-1.528 3.981-3.722 0-2.016-1.475-3.722-3.981-3.722h-2.297z"/></svg>
+                ORCiD
+              </a>
+              <a class="social-pill" href="https://arxiv.org/a/0009-0007-9104-8470.html" target="_blank" rel="noopener" aria-label="arXiv profile">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.57 4.13L0 7.56l8.54 8.57L2.57 4.13zm.72-.49L12 17.5l8.71-13.86H3.29zM21.43 4.13l-5.97 12-1.46-2.32 7.43-9.68zm-1.14-.49L12 17l-8.29-13.36h16.58z"/></svg>
+                arXiv
+              </a>
+              <a class="social-pill" href="https://github.com/psbanerjee" target="_blank" rel="noopener" aria-label="GitHub profile">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12.3c0 5.2 3.4 9.6 8.2 11.1.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.3-1.8-1.3-1.8-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.8 1.8 2.6 2.3.6.1 1.3.1 2 0 .1-.8.4-1.3.7-1.6-2.7-.3-5.6-1.4-5.6-6.3 0-1.4.5-2.5 1.2-3.4-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.4 1.3a11.5 11.5 0 0 1 6.2 0c2.3-1.6 3.3-1.3 3.3-1.3.6 1.7.2 3 .1 3.3.8.9 1.3 2 1.3 3.4 0 4.9-2.9 6-5.6 6.3.4.3.8 1 .8 2.1v3.2c0 .3.2.7.8.6 4.8-1.5 8.2-5.9 8.2-11.1A11.5 11.5 0 0 0 12 .5Z"/></svg>
+                GitHub
+              </a>
+            </div>
+
+            <div class="hero-cta reveal reveal-d4">
+              <a href="Partha_Sarathi_Banerjee_CV.pdf" class="btn-primary" target="_blank" rel="noopener">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download CV
+              </a>
+              <a href="#publications" class="btn-ghost" data-panel="publications">
+                View Publications →
+              </a>
+            </div>
           </div>
 
-          <div class="hero-cta reveal reveal-d4">
-            <a href="Partha_Sarathi_Banerjee_CV.pdf" class="btn-primary" target="_blank" rel="noopener">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Download CV
-            </a>
-            <a href="#publications" class="btn-ghost">
-              View Publications →
-            </a>
-          </div>
-        </div>
-
-        <!-- Photo card -->
-        <div class="hero-card reveal reveal-d2">
-          <div class="hero-photo-wrap">
-            <img src="Photos/me.jpg" alt="Dr. Partha Sarathi Banerjee" class="hero-photo" loading="eager">
-            <div class="hero-photo-footer">
-              <div class="hero-affiliation">
-                <strong>Dr. Partha Sarathi Banerjee</strong>
-                PhD · Theoretical Condensed Matter Physics<br>
-                IIT Delhi · New Delhi, India
+          <!-- Photo card -->
+          <div class="hero-card reveal reveal-d2">
+            <div class="hero-photo-wrap">
+              <img src="Photos/me.jpg" alt="Dr. Partha Sarathi Banerjee" class="hero-photo" loading="eager">
+              <div class="hero-photo-footer">
+                <div class="hero-affiliation">
+                  <strong>Dr. Partha Sarathi Banerjee</strong>
+                  PhD · Theoretical Condensed Matter Physics<br>
+                  IIT Delhi · New Delhi, India
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Stats strip -->
-      <div class="stats-strip reveal reveal-d4">
-        <div class="stat-item">
-          <div class="stat-num">3</div>
-          <div class="stat-label">Publications</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">2</div>
-          <div class="stat-label">Research Groups</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">7+</div>
-          <div class="stat-label">Years at IIT Delhi</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════
-       ABOUT
-       ══════════════════════════════════ -->
-  <section id="about" aria-label="About">
-    <div class="container">
-
-      <div class="reveal">
-        <div class="section-label">Background</div>
-        <div class="divider"></div>
-        <h2 class="section-title">About Me</h2>
-      </div>
-
-      <div class="about-grid">
-
-        <!-- Slideshow (sticky on desktop) -->
-        <div class="slideshow-wrap reveal reveal-d1">
-          <div class="slideshow" id="slideshow" role="region" aria-label="Photo slideshow">
-            <div class="slides-track" id="slidesTrack">
-              <div class="slide-item"><img src="Photos/about-1.jpg"  alt="Partha Sarathi Banerjee — photo 1" loading="eager"></div>
-              <div class="slide-item"><img src="Photos/JOPT.png"     alt="Journal of Optics publication" loading="lazy"></div>
-              <div class="slide-item"><img src="Photos/about-2.png"  alt="Partha Sarathi Banerjee — photo 2" loading="lazy"></div>
-              <div class="slide-item"><img src="Photos/about-3.jpg"  alt="Partha Sarathi Banerjee — photo 3" loading="lazy"></div>
-              <div class="slide-item"><img src="Photos/about-4.jpg"  alt="Partha Sarathi Banerjee — photo 4" loading="lazy"></div>
-              <div class="slide-item"><img src="Photos/about-5.jpeg" alt="Partha Sarathi Banerjee — photo 5" loading="lazy"></div>
-            </div>
-            <div class="slide-controls" aria-hidden="true">
-              <button class="slide-btn" id="slidePrev" aria-label="Previous slide">◀</button>
-              <button class="slide-btn" id="slideNext" aria-label="Next slide">▶</button>
-            </div>
-            <div class="slide-dots" id="slideDots" aria-label="Slide indicators"></div>
+        <!-- Stats strip -->
+        <div class="stats-strip reveal reveal-d4">
+          <div class="stat-item">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Publications</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">2</div>
+            <div class="stat-label">Research Groups</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">7+</div>
+            <div class="stat-label">Years at IIT Delhi</div>
           </div>
         </div>
-
-        <!-- Bio + quick facts -->
-        <div>
-          <div class="bio-prose reveal reveal-d1">
-            <p>I completed my PhD in Theoretical Condensed Matter Physics (2026) at the <a href="https://home.iitd.ac.in/" target="_blank" rel="noopener">Indian Institute of Technology, Delhi</a>, under the supervision of Prof. Rahul Marathe and Prof. Sankalpa Ghosh. My doctoral research focuses on quantum transport in graphene-based heterojunctions. In 2024, I published two works: one establishing an electronic analogue of Fourier optics with massless Dirac fermions, and another exploring the tunability of Josephson current in superconductor–graphene junctions. I also presented my work at the Max Planck Institute for the Physics of Complex Systems, Dresden.</p>
-
-            <p>Alongside my PhD, I worked in the Model Risk Management team at Morgan Stanley, Mumbai (2025). My role included validating financial models across domains such as Market Risk RWA and Prudent Valuation, as well as contributing to AI/ML model validations. This involved extensive diagnostic testing, sensitivity analysis, benchmarking, and outcome analysis.</p>
-
-            <p>Before my PhD, I completed an MSc in Physics (2017–2019) at <a href="https://home.iitd.ac.in/" target="_blank" rel="noopener">IIT Delhi</a>, where I developed a strong interest in theoretical physics and worked on nonequilibrium statistical mechanics for my master's thesis under Prof. Rahul Marathe. Prior to that, I earned my B.Sc. (Hons.) in Physics (2012–2014) from <a href="https://www.bangabasi.ac.in/" target="_blank" rel="noopener">Bangabasi College</a>, where I was introduced to programming and computational approaches in physics, which shaped my long-term research interests in optics and condensed matter physics.</p>
-
-            <p>My academic journey began at <a href="https://school.banglarshiksha.gov.in/ws/website/index/19161400104/" target="_blank" rel="noopener">Baluhati High School</a>, where I completed my schooling up to Class XII (2014). It was here that my passion for mathematics and physics first took root. Early experiments in chemistry also taught me the joy of hands-on science, even though my path ultimately focused on physics and computation.</p>
-
-            <p>Beyond academics, I am deeply passionate about history, photography, and exploring historical places. These pursuits complement my scientific curiosity and give me new perspectives on culture, time, and human creativity.</p>
-          </div>
-
-          <div class="quick-facts reveal reveal-d2">
-            <p class="quick-facts-title">Quick Facts</p>
-            <div class="chips">
-              <span class="chip">PhD (Theoretical Physics), IIT Delhi</span>
-              <span class="chip">Model Validation @ Morgan Stanley</span>
-              <span class="chip">Josephson junctions</span>
-              <span class="chip">Andreev reflections</span>
-              <span class="chip">Publications in 2024</span>
-              <span class="chip">MSc, IIT Delhi</span>
-              <span class="chip">New Delhi, India</span>
-            </div>
-          </div>
-        </div>
-
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ══════════════════════════════════
-       PROJECTS
-       ══════════════════════════════════ -->
-  <section id="projects" aria-label="Projects">
-    <div class="container">
+    <!-- ══════════════════════════════════
+         ABOUT PANEL
+         ══════════════════════════════════ -->
+    <section id="about" aria-label="About">
+      <div class="container">
 
-      <div class="reveal">
-        <div class="section-label">Coding &amp; Research</div>
-        <div class="divider"></div>
-        <h2 class="section-title">Projects</h2>
-      </div>
-
-      <div class="projects-grid">
-
-        <div class="project-card reveal reveal-d1">
-          <div class="project-card-icon">🔢</div>
-          <h3>Numerical Analysis</h3>
-          <p>This repository contains various toy problems which can be used to solve numerical problems in various fields like physics, engineering, finance and data analysis.</p>
-          <div class="project-tags">
-            <span class="tag">Python</span>
-            <span class="tag">Jupyter</span>
-            <span class="tag">NumPy</span>
-          </div>
-          <a class="project-link" href="https://github.com/psbanerjee/Numerical-Analysis" target="_blank" rel="noopener">
-            View on GitHub
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-        </div>
-
-        <div class="project-card reveal reveal-d2">
-          <div class="project-card-icon">⚛️</div>
-          <h3>Bound-States</h3>
-          <p>FORTRAN and Python based tool to calculate the wavefunctions and eigenvalues of any bound state problem.</p>
-          <div class="project-tags">
-            <span class="tag">Python</span>
-            <span class="tag">NumPy</span>
-            <span class="tag">FORTRAN</span>
-          </div>
-          <a class="project-link" href="https://github.com/psbanerjee/Bound-States" target="_blank" rel="noopener">
-            View on GitHub
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-        </div>
-
-        <div class="project-card reveal reveal-d3">
-          <div class="project-card-icon">🤖</div>
-          <h3>Prompt Engineering</h3>
-          <p>This project contains a collection of prompt engineering techniques, examples, and experiments designed to help build, evaluate, and optimize interactions with large language models.</p>
-          <div class="project-tags">
-            <span class="tag">Prompt Engineering</span>
-            <span class="tag">LLM Optimization</span>
-            <span class="tag">AI Interaction</span>
-          </div>
-          <a class="project-link" href="https://github.com/psbanerjee/psbanerjee.github.io/blob/main/Prompt%20Engineering%20Writeup.pdf" target="_blank" rel="noopener">
-            View on GitHub
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-        </div>
-
-        <div class="project-card reveal reveal-d4">
-          <div class="project-card-icon">🐧</div>
-          <h3>Linux-PSB</h3>
-          <p>This repository contains various bash scripts which automatically installs most of the scientific software you need. Works with Ubuntu and Fedora.</p>
-          <div class="project-tags">
-            <span class="tag">Bash</span>
-            <span class="tag">Linux</span>
-            <span class="tag">Ubuntu</span>
-          </div>
-          <a class="project-link" href="https://github.com/psbanerjee/psbanerjee" target="_blank" rel="noopener">
-            View on GitHub
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════
-       PUBLICATIONS
-       ══════════════════════════════════ -->
-  <section id="publications" aria-label="Publications">
-    <div class="container">
-
-      <div class="reveal">
-        <div class="section-label">Research Output</div>
-        <div class="divider"></div>
-        <h2 class="section-title">Publications</h2>
-      </div>
-
-      <div class="pub-list">
-
-        <!-- Publication 1 -->
-        <article class="pub-card reveal reveal-d1">
-          <div class="pub-meta-row">
-            <span class="pub-year">2025</span>
-            <span class="pub-preprint">Preprint</span>
-            <span class="pub-journal">arXiv</span>
-          </div>
-          <h3 class="pub-title">
-            <a href="https://arxiv.org/abs/2510.11432" target="_blank" rel="noopener">
-              Intermediate chiral edge states in quantum Hall Josephson junctions
-            </a>
-          </h3>
-          <p class="pub-authors">
-            <strong>P. S. Banerjee</strong>, R. Marathe, S. Ghosh
-          </p>
-          <div class="pub-links">
-            <a class="pub-btn pub-btn-arxiv" href="https://arxiv.org/abs/2510.11432" target="_blank" rel="noopener">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.57 4.13L0 7.56l8.54 8.57L2.57 4.13zm.72-.49L12 17.5l8.71-13.86H3.29zM21.43 4.13l-5.97 12-1.46-2.32 7.43-9.68zm-1.14-.49L12 17l-8.29-13.36h16.58z"/></svg>
-              arXiv:2510.11432
-            </a>
-          </div>
-        </article>
-
-        <!-- Publication 2 -->
-        <article class="pub-card reveal reveal-d2">
-          <div class="pub-meta-row">
-            <span class="pub-year">2024</span>
-            <span class="pub-journal">Physica Scripta</span>
-          </div>
-          <h3 class="pub-title">
-            <a href="https://iopscience.iop.org/article/10.1088/1402-4896/ad9c23" target="_blank" rel="noopener">
-              Magnetically modulated superconductor–graphene–superconductor (SGS) Josephson junctions and their tunability
-            </a>
-          </h3>
-          <p class="pub-authors">
-            <strong>P. S. Banerjee</strong>, R. Marathe, S. Ghosh
-          </p>
-          <div class="pub-links">
-            <a class="pub-btn pub-btn-arxiv" href="https://arxiv.org/abs/2408.09925" target="_blank" rel="noopener">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.57 4.13L0 7.56l8.54 8.57L2.57 4.13zm.72-.49L12 17.5l8.71-13.86H3.29zM21.43 4.13l-5.97 12-1.46-2.32 7.43-9.68zm-1.14-.49L12 17l-8.29-13.36h16.58z"/></svg>
-              arXiv:2408.09925
-            </a>
-            <a class="pub-btn pub-btn-doi" href="https://iopscience.iop.org/article/10.1088/1402-4896/ad9c23" target="_blank" rel="noopener">
-              DOI →
-            </a>
-          </div>
-        </article>
-
-        <!-- Publication 3 -->
-        <article class="pub-card reveal reveal-d3">
-          <div class="pub-meta-row">
-            <span class="pub-year">2024</span>
-            <span class="pub-journal">Journal of Optics</span>
-          </div>
-          <h3 class="pub-title">
-            <a href="https://iopscience.iop.org/article/10.1088/2040-8986/ad645b" target="_blank" rel="noopener">
-              Electronic analogue of Fourier optics with massless Dirac fermions scattered by quantum dot lattice
-            </a>
-          </h3>
-          <p class="pub-authors">
-            <strong>P. S. Banerjee</strong>, R. Marathe, S. Ghosh
-          </p>
-          <div class="pub-links">
-            <a class="pub-btn pub-btn-arxiv" href="https://arxiv.org/abs/2402.11259" target="_blank" rel="noopener">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.57 4.13L0 7.56l8.54 8.57L2.57 4.13zm.72-.49L12 17.5l8.71-13.86H3.29zM21.43 4.13l-5.97 12-1.46-2.32 7.43-9.68zm-1.14-.49L12 17l-8.29-13.36h16.58z"/></svg>
-              arXiv:2402.11259
-            </a>
-            <a class="pub-btn pub-btn-doi" href="https://iopscience.iop.org/article/10.1088/2040-8986/ad645b" target="_blank" rel="noopener">
-              DOI →
-            </a>
-          </div>
-        </article>
-
-      </div>
-
-      <div class="scholar-link-wrap reveal reveal-d4">
-        <a class="btn-ghost" href="https://scholar.google.com/citations?user=fEFvHNMAAAAJ&hl=en" target="_blank" rel="noopener">
-          View full profile on Google Scholar →
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════
-       THESIS
-       ══════════════════════════════════ -->
-  <section id="thesis" aria-label="PhD Thesis">
-    <div class="container">
-
-      <div class="thesis-header">
         <div class="reveal">
-          <div class="section-label">Doctoral Work</div>
+          <div class="section-label">Background</div>
           <div class="divider"></div>
-          <h2 class="section-title" style="margin-bottom: 20px;">PhD Thesis</h2>
-          <div class="thesis-meta">
-            <span class="thesis-badge">🎓 <strong>IIT Delhi</strong></span>
-            <span class="thesis-badge">📅 <strong>2026</strong></span>
-            <span class="thesis-badge">🔬 <strong>Condensed Matter Physics</strong></span>
-          </div>
+          <h2 class="section-title">About Me</h2>
         </div>
-        <div class="thesis-actions reveal reveal-d1">
-          <a class="btn-primary" href="Thesis.pdf" target="_blank" rel="noopener" download>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Download PDF
+
+        <div class="about-grid">
+
+          <!-- Slideshow (sticky on desktop) -->
+          <div class="slideshow-wrap reveal reveal-d1">
+            <div class="slideshow" id="slideshow" role="region" aria-label="Photo slideshow">
+              <div class="slides-track" id="slidesTrack">
+                <div class="slide-item"><img src="Photos/about-1.jpg"  alt="Partha Sarathi Banerjee — photo 1" loading="eager"></div>
+                <div class="slide-item"><img src="Photos/JOPT.png"     alt="Journal of Optics publication" loading="lazy"></div>
+                <div class="slide-item"><img src="Photos/about-2.png"  alt="Partha Sarathi Banerjee — photo 2" loading="lazy"></div>
+                <div class="slide-item"><img src="Photos/about-3.jpg"  alt="Partha Sarathi Banerjee — photo 3" loading="lazy"></div>
+                <div class="slide-item"><img src="Photos/about-4.jpg"  alt="Partha Sarathi Banerjee — photo 4" loading="lazy"></div>
+                <div class="slide-item"><img src="Photos/about-5.jpeg" alt="Partha Sarathi Banerjee — photo 5" loading="lazy"></div>
+              </div>
+              <div class="slide-controls" aria-hidden="true">
+                <button class="slide-btn" id="slidePrev" aria-label="Previous slide">◀</button>
+                <button class="slide-btn" id="slideNext" aria-label="Next slide">▶</button>
+              </div>
+              <div class="slide-dots" id="slideDots" aria-label="Slide indicators"></div>
+            </div>
+          </div>
+
+          <!-- Bio + quick facts -->
+          <div>
+            <div class="bio-prose reveal reveal-d1">
+              <p>I completed my PhD in Theoretical Condensed Matter Physics (2026) at the <a href="https://home.iitd.ac.in/" target="_blank" rel="noopener">Indian Institute of Technology, Delhi</a>, under the supervision of Prof. Rahul Marathe and Prof. Sankalpa Ghosh. My doctoral research focuses on quantum transport in graphene-based heterojunctions. In 2024, I published two works: one establishing an electronic analogue of Fourier optics with massless Dirac fermions, and another exploring the tunability of Josephson current in superconductor–graphene junctions. I also presented my work at the Max Planck Institute for the Physics of Complex Systems, Dresden.</p>
+
+              <p>Alongside my PhD, I worked in the Model Risk Management team at Morgan Stanley, Mumbai (2025). My role included validating financial models across domains such as Market Risk RWA and Prudent Valuation, as well as contributing to AI/ML model validations. This involved extensive diagnostic testing, sensitivity analysis, benchmarking, and outcome analysis.</p>
+
+              <p>Before my PhD, I completed an MSc in Physics (2017–2019) at <a href="https://home.iitd.ac.in/" target="_blank" rel="noopener">IIT Delhi</a>, where I developed a strong interest in theoretical physics and worked on nonequilibrium statistical mechanics for my master's thesis under Prof. Rahul Marathe. Prior to that, I earned my B.Sc. (Hons.) in Physics (2012–2014) from <a href="https://www.bangabasi.ac.in/" target="_blank" rel="noopener">Bangabasi College</a>, where I was introduced to programming and computational approaches in physics, which shaped my long-term research interests in optics and condensed matter physics.</p>
+
+              <p>My academic journey began at <a href="https://school.banglarshiksha.gov.in/ws/website/index/19161400104/" target="_blank" rel="noopener">Baluhati High School</a>, where I completed my schooling up to Class XII (2014). It was here that my passion for mathematics and physics first took root. Early experiments in chemistry also taught me the joy of hands-on science, even though my path ultimately focused on physics and computation.</p>
+
+              <p>Beyond academics, I am deeply passionate about history, photography, and exploring historical places. These pursuits complement my scientific curiosity and give me new perspectives on culture, time, and human creativity.</p>
+            </div>
+
+            <div class="quick-facts reveal reveal-d2">
+              <p class="quick-facts-title">Quick Facts</p>
+              <div class="chips">
+                <span class="chip">PhD (Theoretical Physics), IIT Delhi</span>
+                <span class="chip">Model Validation @ Morgan Stanley</span>
+                <span class="chip">Josephson junctions</span>
+                <span class="chip">Andreev reflections</span>
+                <span class="chip">Publications in 2024</span>
+                <span class="chip">MSc, IIT Delhi</span>
+                <span class="chip">New Delhi, India</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         PROJECTS PANEL
+         ══════════════════════════════════ -->
+    <section id="projects" aria-label="Projects">
+      <div class="container">
+
+        <div class="reveal">
+          <div class="section-label">Coding &amp; Research</div>
+          <div class="divider"></div>
+          <h2 class="section-title">Projects</h2>
+        </div>
+
+        <div class="projects-grid">
+
+          <div class="project-card reveal reveal-d1">
+            <div class="project-card-icon">🔢</div>
+            <h3>Numerical Analysis</h3>
+            <p>This repository contains various toy problems which can be used to solve numerical problems in various fields like physics, engineering, finance and data analysis.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Jupyter</span>
+              <span class="tag">NumPy</span>
+            </div>
+            <a class="project-link" href="https://github.com/psbanerjee/Numerical-Analysis" target="_blank" rel="noopener">
+              View on GitHub
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <div class="project-card reveal reveal-d2">
+            <div class="project-card-icon">⚛️</div>
+            <h3>Bound-States</h3>
+            <p>FORTRAN and Python based tool to calculate the wavefunctions and eigenvalues of any bound state problem.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">NumPy</span>
+              <span class="tag">FORTRAN</span>
+            </div>
+            <a class="project-link" href="https://github.com/psbanerjee/Bound-States" target="_blank" rel="noopener">
+              View on GitHub
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <div class="project-card reveal reveal-d3">
+            <div class="project-card-icon">🤖</div>
+            <h3>Prompt Engineering</h3>
+            <p>This project contains a collection of prompt engineering techniques, examples, and experiments designed to help build, evaluate, and optimize interactions with large language models.</p>
+            <div class="project-tags">
+              <span class="tag">Prompt Engineering</span>
+              <span class="tag">LLM Optimization</span>
+              <span class="tag">AI Interaction</span>
+            </div>
+            <a class="project-link" href="https://github.com/psbanerjee/psbanerjee.github.io/blob/main/Prompt%20Engineering%20Writeup.pdf" target="_blank" rel="noopener">
+              View on GitHub
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+
+          <div class="project-card reveal reveal-d4">
+            <div class="project-card-icon">🐧</div>
+            <h3>Linux-PSB</h3>
+            <p>This repository contains various bash scripts which automatically installs most of the scientific software you need. Works with Ubuntu and Fedora.</p>
+            <div class="project-tags">
+              <span class="tag">Bash</span>
+              <span class="tag">Linux</span>
+              <span class="tag">Ubuntu</span>
+            </div>
+            <a class="project-link" href="https://github.com/psbanerjee/psbanerjee" target="_blank" rel="noopener">
+              View on GitHub
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         PUBLICATIONS PANEL
+         ══════════════════════════════════ -->
+    <section id="publications" aria-label="Publications">
+      <div class="container">
+
+        <div class="reveal">
+          <div class="section-label">Research Output</div>
+          <div class="divider"></div>
+          <h2 class="section-title">Publications</h2>
+        </div>
+
+        <div class="pub-list">
+
+          <!-- Publication 1 -->
+          <article class="pub-card reveal reveal-d1">
+            <div class="pub-meta-row">
+              <span class="pub-year">2025</span>
+              <span class="pub-preprint">Preprint</span>
+              <span class="pub-journal">arXiv</span>
+            </div>
+            <h3 class="pub-title">
+              <a href="https://arxiv.org/abs/2510.11432" target="_blank" rel="noopener">
+                Intermediate chiral edge states in quantum Hall Josephson junctions
+              </a>
+            </h3>
+            <p class="pub-authors">
+              <strong>P. S. Banerjee</strong>, R. Marathe, S. Ghosh
+            </p>
+            <div class="pub-links">
+              <a class="pub-btn pub-btn-arxiv" href="https://arxiv.org/abs/2510.11432" target="_blank" rel="noopener">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.57 4.13L0 7.56l8.54 8.57L2.57 4.13zm.72-.49L12 17.5l8.71-13.86H3.29zM21.43 4.13l-5.97 12-1.46-2.32 7.43-9.68zm-1.14-.49L12 17l-8.29-13.36h16.58z"/></svg>
+                arXiv:2510.11432
+              </a>
+            </div>
+          </article>
+
+          <!-- Publication 2 -->
+          <article class="pub-card reveal reveal-d2">
+            <div class="pub-meta-row">
+              <span class="pub-year">2024</span>
+              <span class="pub-journal">Physica Scripta</span>
+            </div>
+            <h3 class="pub-title">
+              <a href="https://iopscience.iop.org/article/10.1088/1402-4896/ad9c23" target="_blank" rel="noopener">
+                Magnetically modulated superconductor–graphene–superconductor (SGS) Josephson junctions and their tunability
+              </a>
+            </h3>
+            <p class="pub-authors">
+              <strong>P. S. Banerjee</strong>, R. Marathe, S. Ghosh
+            </p>
+            <div class="pub-links">
+              <a class="pub-btn pub-btn-arxiv" href="https://arxiv.org/abs/2408.09925" target="_blank" rel="noopener">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.57 4.13L0 7.56l8.54 8.57L2.57 4.13zm.72-.49L12 17.5l8.71-13.86H3.29zM21.43 4.13l-5.97 12-1.46-2.32 7.43-9.68zm-1.14-.49L12 17l-8.29-13.36h16.58z"/></svg>
+                arXiv:2408.09925
+              </a>
+              <a class="pub-btn pub-btn-doi" href="https://iopscience.iop.org/article/10.1088/1402-4896/ad9c23" target="_blank" rel="noopener">
+                DOI →
+              </a>
+            </div>
+          </article>
+
+          <!-- Publication 3 -->
+          <article class="pub-card reveal reveal-d3">
+            <div class="pub-meta-row">
+              <span class="pub-year">2024</span>
+              <span class="pub-journal">Journal of Optics</span>
+            </div>
+            <h3 class="pub-title">
+              <a href="https://iopscience.iop.org/article/10.1088/2040-8986/ad645b" target="_blank" rel="noopener">
+                Electronic analogue of Fourier optics with massless Dirac fermions scattered by quantum dot lattice
+              </a>
+            </h3>
+            <p class="pub-authors">
+              <strong>P. S. Banerjee</strong>, R. Marathe, S. Ghosh
+            </p>
+            <div class="pub-links">
+              <a class="pub-btn pub-btn-arxiv" href="https://arxiv.org/abs/2402.11259" target="_blank" rel="noopener">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.57 4.13L0 7.56l8.54 8.57L2.57 4.13zm.72-.49L12 17.5l8.71-13.86H3.29zM21.43 4.13l-5.97 12-1.46-2.32 7.43-9.68zm-1.14-.49L12 17l-8.29-13.36h16.58z"/></svg>
+                arXiv:2402.11259
+              </a>
+              <a class="pub-btn pub-btn-doi" href="https://iopscience.iop.org/article/10.1088/2040-8986/ad645b" target="_blank" rel="noopener">
+                DOI →
+              </a>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="scholar-link-wrap reveal reveal-d4">
+          <a class="btn-ghost" href="https://scholar.google.com/citations?user=fEFvHNMAAAAJ&hl=en" target="_blank" rel="noopener">
+            View full profile on Google Scholar →
           </a>
-          <a class="btn-ghost" href="Thesis.pdf" target="_blank" rel="noopener">
-            Open in new tab ↗
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         THESIS PANEL
+         ══════════════════════════════════ -->
+    <section id="thesis" aria-label="PhD Thesis">
+      <div class="container">
+
+        <div class="thesis-header">
+          <div class="reveal">
+            <div class="section-label">Doctoral Work</div>
+            <div class="divider"></div>
+            <h2 class="section-title" style="margin-bottom: 20px;">PhD Thesis</h2>
+            <div class="thesis-meta">
+              <span class="thesis-badge">🎓 <strong>IIT Delhi</strong></span>
+              <span class="thesis-badge">📅 <strong>2026</strong></span>
+              <span class="thesis-badge">🔬 <strong>Condensed Matter Physics</strong></span>
+            </div>
+          </div>
+          <div class="thesis-actions reveal reveal-d1">
+            <a class="btn-primary" href="Thesis.pdf" target="_blank" rel="noopener" download>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF
+            </a>
+            <a class="btn-ghost" href="Thesis.pdf" target="_blank" rel="noopener">
+              Open in new tab ↗
+            </a>
+          </div>
+        </div>
+
+        <div class="pdf-frame-wrap reveal">
+          <iframe src="Thesis.pdf" title="PhD Thesis — Dr. Partha Sarathi Banerjee" aria-label="Embedded thesis PDF viewer"></iframe>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         CONTACT PANEL
+         ══════════════════════════════════ -->
+    <section id="contact" aria-label="Contact">
+      <div class="container">
+
+        <div class="reveal">
+          <div class="section-label">Get in Touch</div>
+          <div class="divider"></div>
+          <h2 class="section-title">Contact</h2>
+          <p style="color: var(--text-dim); margin-top: -28px; margin-bottom: 40px; font-size: 16px;">
+            Please feel free to ping me anytime if you want to discuss anything like Physics, finance, cricket, history, photography, travelling or even geopolitics.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+
+          <!-- Direct contact -->
+          <div class="contact-card reveal reveal-d1">
+            <p class="contact-card-title">Direct Contact</p>
+
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">📍</div>
+              <div class="contact-info">
+                <div class="contact-label">Address</div>
+                <div class="contact-value">
+                  Room No. MS306, Department of Physics,<br>
+                  Indian Institute of Technology Delhi,<br>
+                  Hauz Khas 110 016, New Delhi, INDIA
+                </div>
+                <div class="contact-actions">
+                  <button class="contact-btn" onclick="copyAddress()" aria-label="Copy address to clipboard">📋 Copy</button>
+                  <a class="contact-btn" href="https://www.google.com/maps/search/?api=1&query=Room%20No.%20MS306%2C%20Department%20of%20Physics%2C%20IIT%20Delhi%2C%20Hauz%20Khas%20110%20016%2C%20New%20Delhi%2C%20India" target="_blank" rel="noopener" aria-label="View on Google Maps">🗺️ Map</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">✉️</div>
+              <div class="contact-info">
+                <div class="contact-label">Email</div>
+                <div class="contact-value">
+                  <a href="mailto:partha.ae1@gmail.com">partha.ae1@gmail.com</a><br>
+                  <a href="mailto:phz198030@physics.iitd.ac.in">phz198030@physics.iitd.ac.in</a>
+                </div>
+                <div class="contact-actions">
+                  <a class="contact-btn" href="mailto:partha.ae1@gmail.com?subject=Hello%20Partha" aria-label="Compose email">✉️ Compose</a>
+                  <button class="contact-btn" onclick="copyEmails()" aria-label="Copy email addresses">📋 Copy</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">💾</div>
+              <div class="contact-info">
+                <div class="contact-label">vCard</div>
+                <div class="contact-value">Save contact to your address book</div>
+                <div class="contact-actions">
+                  <button class="contact-btn btn-primary" style="padding: 8px 16px; border-radius: 8px; font-size: 13px;" onclick="downloadVCard()">⬇️ Download vCard</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social links -->
+          <aside class="contact-card reveal reveal-d2">
+            <p class="contact-card-title">Social Profiles</p>
+            <div class="social-links-grid">
+              <a class="social-link-card" href="https://github.com/psbanerjee" target="_blank" rel="noopener" aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12.3c0 5.2 3.4 9.6 8.2 11.1.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.3-1.8-1.3-1.8-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.8 1.8 2.6 2.3.6.1 1.3.1 2 0 .1-.8.4-1.3.7-1.6-2.7-.3-5.6-1.4-5.6-6.3 0-1.4.5-2.5 1.2-3.4-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.4 1.3a11.5 11.5 0 0 1 6.2 0c2.3-1.6 3.3-1.3 3.3-1.3.6 1.7.2 3 .1 3.3.8.9 1.3 2 1.3 3.4 0 4.9-2.9 6-5.6 6.3.4.3.8 1 .8 2.1v3.2c0 .3.2.7.8.6 4.8-1.5 8.2-5.9 8.2-11.1A11.5 11.5 0 0 0 12 .5Z"/></svg>
+                @psbanerjee
+              </a>
+              <a class="social-link-card" href="https://www.linkedin.com/in/psb1996/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.13 1.44-2.13 2.93v5.68H9.35V9h3.42v1.56h.05c.48-.9 1.65-1.85 3.39-1.85 3.63 0 4.3 2.39 4.3 5.49v6.25ZM5.34 7.44a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+                LinkedIn
+              </a>
+              <a class="social-link-card" href="https://scholar.google.com/citations?user=fEFvHNMAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg>
+                Scholar
+              </a>
+              <a class="social-link-card" href="https://orcid.org/0009-0007-9104-8470" target="_blank" rel="noopener" aria-label="ORCiD">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c2.359 0 3.981-1.528 3.981-3.722 0-2.016-1.475-3.722-3.981-3.722h-2.297z"/></svg>
+                ORCiD
+              </a>
+              <a class="social-link-card" href="https://arxiv.org/a/0009-0007-9104-8470.html" target="_blank" rel="noopener" aria-label="arXiv">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.57 4.13L0 7.56l8.54 8.57L2.57 4.13zm.72-.49L12 17.5l8.71-13.86H3.29zM21.43 4.13l-5.97 12-1.46-2.32 7.43-9.68zm-1.14-.49L12 17l-8.29-13.36h16.58z"/></svg>
+                arXiv
+              </a>
+              <a class="social-link-card" href="https://www.facebook.com/psbphysics/" target="_blank" rel="noopener" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.3V12h2.3V9.7c0-2.3 1.4-3.5 3.4-3.5.98 0 2 .17 2 .17v2.2h-1.1c-1.1 0-1.5.7-1.5 1.4V12h2.6l-.41 2.9h-2.2v7A10 10 0 0 0 22 12Z"/></svg>
+                Facebook
+              </a>
+              <a class="social-link-card" href="https://www.instagram.com/p_s_banerjee/" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                Instagram
+              </a>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Email CTA banner -->
+        <div class="email-cta reveal reveal-d3">
+          <div class="email-cta-text">
+            <strong>Prefer email?</strong>
+            <p>Click to compose a message with your default mail app.</p>
+          </div>
+          <a class="btn-primary" href="mailto:partha.ae1@gmail.com?subject=Inquiry%20from%20Website">
+            ✉️ Email Partha
           </a>
         </div>
-      </div>
 
-      <div class="pdf-frame-wrap reveal">
-        <iframe src="Thesis.pdf" title="PhD Thesis — Dr. Partha Sarathi Banerjee" aria-label="Embedded thesis PDF viewer"></iframe>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════
-       CONTACT
-       ══════════════════════════════════ -->
-  <section id="contact" aria-label="Contact">
-    <div class="container">
-
-      <div class="reveal">
-        <div class="section-label">Get in Touch</div>
-        <div class="divider"></div>
-        <h2 class="section-title">Contact</h2>
-        <p style="color: var(--text-dim); margin-top: -28px; margin-bottom: 40px; font-size: 16px;">
-          Please feel free to ping me anytime if you want to discuss anything like Physics, finance, cricket, history, photography, travelling or even geopolitics.
-        </p>
-      </div>
-
-      <div class="contact-grid">
-
-        <!-- Direct contact -->
-        <div class="contact-card reveal reveal-d1">
-          <p class="contact-card-title">Direct Contact</p>
-
-          <div class="contact-item">
-            <div class="contact-icon" aria-hidden="true">📍</div>
-            <div class="contact-info">
-              <div class="contact-label">Address</div>
-              <div class="contact-value">
-                Room No. MS306, Department of Physics,<br>
-                Indian Institute of Technology Delhi,<br>
-                Hauz Khas 110 016, New Delhi, INDIA
-              </div>
-              <div class="contact-actions">
-                <button class="contact-btn" onclick="copyAddress()" aria-label="Copy address to clipboard">📋 Copy</button>
-                <a class="contact-btn" href="https://www.google.com/maps/search/?api=1&query=Room%20No.%20MS306%2C%20Department%20of%20Physics%2C%20IIT%20Delhi%2C%20Hauz%20Khas%20110%20016%2C%20New%20Delhi%2C%20India" target="_blank" rel="noopener" aria-label="View on Google Maps">🗺️ Map</a>
-              </div>
+        <!-- Footer lives inside Contact panel -->
+        <footer>
+          <div class="footer-inner">
+            <div class="footer-copy">
+              © <span id="year"></span> Dr. Partha Sarathi Banerjee. All rights reserved.
+            </div>
+            <div class="footer-links">
+              <a href="mailto:partha.ae1@gmail.com">Email</a>
+              <a href="https://github.com/psbanerjee" target="_blank" rel="noopener">GitHub</a>
+              <a href="Partha_Sarathi_Banerjee_CV.pdf" target="_blank" rel="noopener">CV</a>
             </div>
           </div>
+        </footer>
 
-          <div class="contact-item">
-            <div class="contact-icon" aria-hidden="true">✉️</div>
-            <div class="contact-info">
-              <div class="contact-label">Email</div>
-              <div class="contact-value">
-                <a href="mailto:partha.ae1@gmail.com">partha.ae1@gmail.com</a><br>
-                <a href="mailto:phz198030@physics.iitd.ac.in">phz198030@physics.iitd.ac.in</a>
-              </div>
-              <div class="contact-actions">
-                <a class="contact-btn" href="mailto:partha.ae1@gmail.com?subject=Hello%20Partha" aria-label="Compose email">✉️ Compose</a>
-                <button class="contact-btn" onclick="copyEmails()" aria-label="Copy email addresses">📋 Copy</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="contact-item">
-            <div class="contact-icon" aria-hidden="true">💾</div>
-            <div class="contact-info">
-              <div class="contact-label">vCard</div>
-              <div class="contact-value">Save contact to your address book</div>
-              <div class="contact-actions">
-                <button class="contact-btn btn-primary" style="padding: 8px 16px; border-radius: 8px; font-size: 13px;" onclick="downloadVCard()">⬇️ Download vCard</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Social links -->
-        <aside class="contact-card reveal reveal-d2">
-          <p class="contact-card-title">Social Profiles</p>
-          <div class="social-links-grid">
-            <a class="social-link-card" href="https://github.com/psbanerjee" target="_blank" rel="noopener" aria-label="GitHub">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12.3c0 5.2 3.4 9.6 8.2 11.1.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.3-1.8-1.3-1.8-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.8 1.8 2.6 2.3.6.1 1.3.1 2 0 .1-.8.4-1.3.7-1.6-2.7-.3-5.6-1.4-5.6-6.3 0-1.4.5-2.5 1.2-3.4-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.4 1.3a11.5 11.5 0 0 1 6.2 0c2.3-1.6 3.3-1.3 3.3-1.3.6 1.7.2 3 .1 3.3.8.9 1.3 2 1.3 3.4 0 4.9-2.9 6-5.6 6.3.4.3.8 1 .8 2.1v3.2c0 .3.2.7.8.6 4.8-1.5 8.2-5.9 8.2-11.1A11.5 11.5 0 0 0 12 .5Z"/></svg>
-              @psbanerjee
-            </a>
-            <a class="social-link-card" href="https://www.linkedin.com/in/psb1996/" target="_blank" rel="noopener" aria-label="LinkedIn">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.13 1.44-2.13 2.93v5.68H9.35V9h3.42v1.56h.05c.48-.9 1.65-1.85 3.39-1.85 3.63 0 4.3 2.39 4.3 5.49v6.25ZM5.34 7.44a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
-              LinkedIn
-            </a>
-            <a class="social-link-card" href="https://scholar.google.com/citations?user=fEFvHNMAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg>
-              Scholar
-            </a>
-            <a class="social-link-card" href="https://orcid.org/0009-0007-9104-8470" target="_blank" rel="noopener" aria-label="ORCiD">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c2.359 0 3.981-1.528 3.981-3.722 0-2.016-1.475-3.722-3.981-3.722h-2.297z"/></svg>
-              ORCiD
-            </a>
-            <a class="social-link-card" href="https://arxiv.org/a/0009-0007-9104-8470.html" target="_blank" rel="noopener" aria-label="arXiv">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.57 4.13L0 7.56l8.54 8.57L2.57 4.13zm.72-.49L12 17.5l8.71-13.86H3.29zM21.43 4.13l-5.97 12-1.46-2.32 7.43-9.68zm-1.14-.49L12 17l-8.29-13.36h16.58z"/></svg>
-              arXiv
-            </a>
-            <a class="social-link-card" href="https://www.facebook.com/psbphysics/" target="_blank" rel="noopener" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.3V12h2.3V9.7c0-2.3 1.4-3.5 3.4-3.5.98 0 2 .17 2 .17v2.2h-1.1c-1.1 0-1.5.7-1.5 1.4V12h2.6l-.41 2.9h-2.2v7A10 10 0 0 0 22 12Z"/></svg>
-              Facebook
-            </a>
-            <a class="social-link-card" href="https://www.instagram.com/p_s_banerjee/" target="_blank" rel="noopener" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-              Instagram
-            </a>
-          </div>
-        </aside>
       </div>
+    </section>
 
-      <!-- Email CTA banner -->
-      <div class="email-cta reveal reveal-d3">
-        <div class="email-cta-text">
-          <strong>Prefer email?</strong>
-          <p>Click to compose a message with your default mail app.</p>
-        </div>
-        <a class="btn-primary" href="mailto:partha.ae1@gmail.com?subject=Inquiry%20from%20Website">
-          ✉️ Email Partha
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════
-       FOOTER
-       ══════════════════════════════════ -->
-  <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-copy">
-          © <span id="year"></span> Dr. Partha Sarathi Banerjee. All rights reserved.
-        </div>
-        <div class="footer-links">
-          <a href="mailto:partha.ae1@gmail.com">Email</a>
-          <a href="https://github.com/psbanerjee" target="_blank" rel="noopener">GitHub</a>
-          <a href="Partha_Sarathi_Banerjee_CV.pdf" target="_blank" rel="noopener">CV</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+  </div><!-- /panel-host -->
 
   <!-- Toast notification -->
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -2020,7 +2026,7 @@
 
   <script>
     /* ═══════════════════════════════════════════════
-       THEME TOGGLE
+       THEME — applied immediately to avoid flash
        ═══════════════════════════════════════════════ */
     (function() {
       const root = document.documentElement;
@@ -2035,50 +2041,134 @@
     });
 
     /* ═══════════════════════════════════════════════
-       NAVBAR: SCROLL & ACTIVE SECTION
+       PANEL SYSTEM — Core navigation architecture
        ═══════════════════════════════════════════════ */
-    const navbar = document.getElementById('navbar');
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a[data-section]');
+    const VALID_PANELS = ['home', 'about', 'projects', 'publications', 'thesis', 'contact'];
+    const navLinks    = document.querySelectorAll('.nav-links a[data-section]');
     const mobileLinks = document.querySelectorAll('.mobile-menu a[data-mobile]');
+    const navbar      = document.getElementById('navbar');
 
-    let ticking = false;
+    // Track which panels have had their reveals triggered
+    const revealedPanels = new Set();
 
-    function onScroll() {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          // Scrolled class
-          if (window.scrollY > 20) {
-            navbar.classList.add('scrolled');
-          } else {
-            navbar.classList.remove('scrolled');
-          }
+    /* Trigger reveal animations for elements inside a panel */
+    function triggerRevealsIn(panelId) {
+      if (revealedPanels.has(panelId)) return;
+      revealedPanels.add(panelId);
 
-          // Active section
-          let current = '';
-          sections.forEach(sec => {
-            const top = sec.offsetTop - parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) - 40;
-            if (window.scrollY >= top) current = sec.id;
-          });
+      const panel = document.getElementById(panelId);
+      const elements = panel.querySelectorAll('.reveal');
 
-          navLinks.forEach(a => {
-            a.classList.toggle('active', a.dataset.section === current);
-          });
-          mobileLinks.forEach(a => {
-            a.classList.toggle('active', a.dataset.mobile === current);
-          });
-
-          ticking = false;
+      // Use a small delay to let the fade-in complete first
+      setTimeout(() => {
+        elements.forEach((el, i) => {
+          // respect existing transition-delay from class; add a base delay
+          setTimeout(() => {
+            el.classList.add('visible');
+          }, 40);
         });
-        ticking = true;
-      }
+      }, 80);
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // run once
+    /* Core panel switching function */
+    function switchPanel(id, updateHash = true) {
+      if (!VALID_PANELS.includes(id)) id = 'home';
+
+      // Show target panel, hide all others
+      VALID_PANELS.forEach(panelId => {
+        const panel = document.getElementById(panelId);
+        if (panelId === id) {
+          panel.classList.add('active');
+          // Reset scroll position on panel switch
+          panel.scrollTop = 0;
+        } else {
+          panel.classList.remove('active');
+        }
+      });
+
+      // Update nav active states
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.dataset.section === id);
+      });
+      mobileLinks.forEach(a => {
+        a.classList.toggle('active', a.dataset.mobile === id);
+      });
+
+      // Update URL hash (for deep-linking + back button)
+      if (updateHash) {
+        history.replaceState(null, '', '#' + id);
+      }
+
+      // Fire reveal animations for newly shown panel
+      triggerRevealsIn(id);
+
+      // Reset navbar scroll state for new panel
+      navbar.classList.remove('scrolled');
+
+      // Listen to this panel's scroll for navbar style
+      attachPanelScrollListener(id);
+    }
+
+    /* Attach scroll listener to the active panel for navbar effect */
+    let currentScrollListener = null;
+    function attachPanelScrollListener(id) {
+      const panel = document.getElementById(id);
+      if (currentScrollListener) {
+        // Remove from all panels
+        VALID_PANELS.forEach(pid => {
+          document.getElementById(pid).removeEventListener('scroll', currentScrollListener);
+        });
+      }
+      currentScrollListener = function() {
+        if (panel.scrollTop > 20) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      };
+      panel.addEventListener('scroll', currentScrollListener, { passive: true });
+    }
+
+    /* Intercept ALL internal hash links (nav, mobile, inline) */
+    document.addEventListener('click', function(e) {
+      // Find closest anchor
+      const anchor = e.target.closest('a[href^="#"], a[data-panel]');
+      if (!anchor) return;
+
+      const panelId = anchor.dataset.panel ||
+                      (anchor.getAttribute('href') || '').replace('#', '');
+      if (VALID_PANELS.includes(panelId)) {
+        e.preventDefault();
+        switchPanel(panelId);
+
+        // Close mobile menu if open
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (hamburger.classList.contains('open')) {
+          hamburger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        }
+      }
+    });
+
+    /* Handle browser back/forward via hash changes */
+    window.addEventListener('hashchange', function() {
+      const id = location.hash.replace('#', '') || 'home';
+      switchPanel(id, false);
+    });
 
     /* ═══════════════════════════════════════════════
-       MOBILE MENU
+       INITIAL LOAD — resolve starting panel from hash
+       ═══════════════════════════════════════════════ */
+    (function init() {
+      const startId = location.hash.replace('#', '') || 'home';
+      switchPanel(VALID_PANELS.includes(startId) ? startId : 'home', false);
+    })();
+
+    /* ═══════════════════════════════════════════════
+       MOBILE MENU — hamburger toggle
        ═══════════════════════════════════════════════ */
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -2087,38 +2177,13 @@
       const open = hamburger.classList.toggle('open');
       mobileMenu.classList.toggle('open', open);
       hamburger.setAttribute('aria-expanded', open);
-      document.body.style.overflow = open ? 'hidden' : '';
     });
-
-    // Close on link click
-    mobileLinks.forEach(a => {
-      a.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
-      });
-    });
-
-    /* ═══════════════════════════════════════════════
-       INTERSECTION OBSERVER: REVEAL ANIMATIONS
-       ═══════════════════════════════════════════════ */
-    const revealObs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
     /* ═══════════════════════════════════════════════
        PHOTO SLIDESHOW
        ═══════════════════════════════════════════════ */
     (function initSlider() {
-      const track   = document.getElementById('slidesTrack');
+      const track    = document.getElementById('slidesTrack');
       const dotsWrap = document.getElementById('slideDots');
       const prevBtn  = document.getElementById('slidePrev');
       const nextBtn  = document.getElementById('slideNext');
@@ -2188,7 +2253,7 @@
       let sx = 0, dx = 0, touching = false;
       slider.addEventListener('pointerdown', e => { touching = true; sx = e.clientX; });
       slider.addEventListener('pointermove', e => { if (!touching) return; dx = e.clientX - sx; });
-      slider.addEventListener('pointerup',   () => {
+      slider.addEventListener('pointerup', () => {
         if (Math.abs(dx) > 40) { dx < 0 ? goTo(current + 1) : goTo(current - 1); }
         touching = false; dx = 0;
       });
