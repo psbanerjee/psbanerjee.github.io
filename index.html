@@ -1,173 +1,2256 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- ═══════════════════════════════════════════════════════════
+     Partha Sarathi Banerjee — Academic Portfolio
+     Single-file redesign | All content preserved exactly
+     Design: Scholarly Precision aesthetic
+     ═══════════════════════════════════════════════════════════ -->
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZL5MPHFSZ8"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-ZL5MPHFSZ8');
 </script>
+
 <head>
-	<link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
-<link rel="shortcut icon" href="/favicon/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-<link rel="manifest" href="/favicon/site.webmanifest" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Partha Sarathi Banerjee </title>
+  <title>Dr. Partha Sarathi Banerjee — Theoretical Condensed Matter Physics</title>
+  <meta name="description" content="Dr. Partha Sarathi Banerjee — PhD in Theoretical Condensed Matter Physics, IIT Delhi. Research in quantum transport, graphene heterojunctions, Josephson junctions." />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+  <link rel="shortcut icon" href="favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="favicon/site.webmanifest" />
+
+  <!-- Typography: Fraunces (display) + DM Sans (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+
   <style>
+    /* ═══════════════════════════════════════════════
+       DESIGN TOKENS
+       Dark: deep slate-indigo + warm amber
+       Light: warm cream + deep navy
+       ═══════════════════════════════════════════════ */
     :root {
-      --bg: #0b1020;
-      --panel: #0f152b;
-      --text: #eef2ff;
-      --muted: #b8c1ec;
-      --brand: #22d3ee;
-      --shadow: 0 4px 12px rgba(0,0,0,0.3);
+      /* Dark mode (default) */
+      --bg:          #08090f;
+      --bg-2:        #0e1018;
+      --surface:     #12141e;
+      --surface-2:   #181a26;
+      --border:      rgba(255,255,255,0.07);
+      --border-mid:  rgba(255,255,255,0.12);
+      --text:        #ede8df;
+      --text-dim:    #9a9385;
+      --text-muted:  #635d55;
+      --accent:      #c9a84c;     /* warm gold */
+      --accent-2:    #e6c880;     /* lighter gold */
+      --accent-glow: rgba(201,168,76,0.18);
+      --accent-glow-2: rgba(201,168,76,0.08);
+      --red:         #e07070;
+      --green:       #6db88c;
+
+      --nav-h:       68px;
+      --radius:      14px;
+      --radius-lg:   22px;
+      --radius-xl:   30px;
+      --shadow-sm:   0 2px 8px rgba(0,0,0,0.4);
+      --shadow:      0 8px 24px rgba(0,0,0,0.5);
+      --shadow-lg:   0 20px 48px rgba(0,0,0,0.6);
+
+      --transition:  0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
+
     .light {
-      --bg: #fcfcff;
-      --panel: #ffffff;
-      --text: #0b1020;
-      --muted: #46506b;
-      --brand: #0891b2;
-      --shadow: 0 4px 12px rgba(0,0,0,0.1);
+      --bg:          #faf8f3;
+      --bg-2:        #f4f1e9;
+      --surface:     #ffffff;
+      --surface-2:   #f8f6f0;
+      --border:      rgba(0,0,0,0.07);
+      --border-mid:  rgba(0,0,0,0.12);
+      --text:        #1a1610;
+      --text-dim:    #4a4235;
+      --text-muted:  #8a7d6a;
+      --accent:      #9b7a1f;
+      --accent-2:    #b8940f;
+      --accent-glow: rgba(155,122,31,0.12);
+      --accent-glow-2: rgba(155,122,31,0.06);
+      --shadow-sm:   0 2px 8px rgba(0,0,0,0.06);
+      --shadow:      0 8px 24px rgba(0,0,0,0.08);
+      --shadow-lg:   0 20px 48px rgba(0,0,0,0.10);
     }
-    body {margin:0;font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s;}
-    header {background:var(--panel);position:sticky;top:0;z-index:1000;box-shadow:var(--shadow);}
-    .container {width:min(1100px,90%);margin:auto;}
-    .nav {display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
-    .logo {display:flex;align-items:center;gap:10px;}
-    .logo img {height:50px;}
-    nav ul {display:flex;gap:20px;list-style:none;margin:0;padding:0;}
-    nav a {color:var(--muted);text-decoration:none;font-weight:600;}
-    nav a:hover {color:var(--brand);}
-    
-    /* Hero section */
-    .hero {
-      padding: 60px 0;
+
+    /* ═══════════════════════════════════════════════
+       RESET & BASE
+       ═══════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-h) + 16px);
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      letter-spacing: 0.01em;
+      transition: background var(--transition), color var(--transition);
+      overflow-x: hidden;
+    }
+
+    /* Subtle background texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse 900px 600px at 80% -10%, var(--accent-glow-2), transparent),
+        radial-gradient(ellipse 600px 400px at -10% 70%, rgba(100,120,200,0.04), transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+    a:hover { opacity: 0.78; }
+    img { display: block; max-width: 100%; }
+    button { font-family: inherit; cursor: pointer; }
+
+    .container { width: min(1100px, 92%); margin-inline: auto; }
+
+    /* ═══════════════════════════════════════════════
+       UTILITY CLASSES
+       ═══════════════════════════════════════════════ */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* Reveal animation - triggered by IntersectionObserver */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.72s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.72s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* Stagger delays */
+    .reveal-d1 { transition-delay: 0.08s; }
+    .reveal-d2 { transition-delay: 0.16s; }
+    .reveal-d3 { transition-delay: 0.24s; }
+    .reveal-d4 { transition-delay: 0.32s; }
+    .reveal-d5 { transition-delay: 0.40s; }
+
+    /* Section label */
+    .section-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    /* Section heading */
+    .section-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 48px;
+    }
+
+    /* Divider */
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: var(--accent);
+      margin-bottom: 16px;
+      border-radius: 2px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       NAV
+       ═══════════════════════════════════════════════ */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      height: var(--nav-h);
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+
+    #navbar.scrolled {
+      background: color-mix(in srgb, var(--bg) 92%, transparent);
+      backdrop-filter: blur(16px) saturate(1.4);
+      -webkit-backdrop-filter: blur(16px) saturate(1.4);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--nav-h);
+    }
+
+    /* Logo */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    .nav-logo-text {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.1;
+      display: none;
+    }
+
+    /* Desktop nav links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      position: relative;
+      display: block;
+      padding: 6px 14px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-dim);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      background: var(--accent-glow-2);
+      opacity: 1;
+    }
+
+    .nav-links a.active {
+      color: var(--accent);
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 2px; left: 50%;
+      transform: translateX(-50%);
+      width: 20px; height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* Nav right controls */
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .theme-btn {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      border: 1px solid var(--border-mid);
+      background: var(--surface);
+      color: var(--text-dim);
+      font-size: 16px;
+      display: grid;
+      place-items: center;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .theme-btn:hover {
+      background: var(--surface-2);
+      color: var(--text);
+      border-color: var(--border-mid);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 38px; height: 38px;
+      border: 1px solid var(--border-mid);
+      background: var(--surface);
+      border-radius: 10px;
+      padding: 0 9px;
+    }
+
+    .hamburger span {
+      display: block;
+      height: 1.5px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-h); left: 0; right: 0;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      z-index: 899;
+      padding: 16px 0 24px;
+      transform: translateY(-100%);
+      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  opacity 0.35s ease;
+      opacity: 0;
+    }
+
+    .mobile-menu.open {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 13px 24px;
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--text-dim);
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: var(--accent-glow-2);
+    }
+
+    /* ═══════════════════════════════════════════════
+       SECTION BASE
+       ═══════════════════════════════════════════════ */
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ═══════════════════════════════════════════════
+       HOME SECTION
+       ═══════════════════════════════════════════════ */
+    #home {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: calc(var(--nav-h) + 48px) 0 80px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 72px;
+      align-items: center;
+    }
+
+    /* Left: text */
+    .hero-text {}
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px; height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(40px, 5.5vw, 72px);
+      font-weight: 300;
+      line-height: 1.06;
+      color: var(--text);
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent-2);
+      font-weight: 300;
+    }
+
+    .hero-title {
+      font-size: clamp(16px, 1.8vw, 20px);
+      color: var(--text-dim);
+      font-weight: 300;
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+
+    .hero-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-dim);
+      margin-bottom: 36px;
+      padding: 10px 16px;
+      border: 1px solid var(--border-mid);
+      border-radius: 40px;
+      background: var(--surface);
+      transition: border-color 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+
+    .hero-email:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      opacity: 1;
+    }
+
+    .hero-email::before {
+      content: '✉';
+      font-size: 13px;
+      color: var(--accent);
+    }
+
+    .hero-socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 44px;
+    }
+
+    .social-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 16px;
+      border: 1px solid var(--border-mid);
+      border-radius: 40px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-dim);
+      text-decoration: none;
+      background: var(--surface);
+      transition: all 0.2s;
+    }
+
+    .social-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-glow-2);
+      transform: translateY(-2px);
+      opacity: 1;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 40px;
+      background: var(--accent);
+      color: #0a0805;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--accent-glow);
+      opacity: 1;
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 40px;
+      background: transparent;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid var(--border-mid);
+      transition: all 0.2s;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-glow-2);
+      transform: translateY(-2px);
+      opacity: 1;
+    }
+
+    /* Right: Profile card */
+    .hero-card {
+      position: relative;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: calc(var(--radius-xl) + 1px);
+      background: linear-gradient(135deg, var(--accent), transparent 50%, var(--accent) 100%);
+      opacity: 0.3;
+      z-index: -1;
+    }
+
+    .hero-photo-wrap {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-photo {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .hero-photo-footer {
+      padding: 20px 22px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .hero-affiliation {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    .hero-affiliation strong {
+      display: block;
+      color: var(--text);
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    /* Quick stats strip */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-top: 60px;
+      border: 1px solid var(--border);
+    }
+
+    .stat-item {
+      background: var(--surface);
+      padding: 20px 24px;
       text-align: center;
     }
-    .hero h1 {font-size:42px;margin-bottom:12px;font-weight:900;}
-    .hero p {color:var(--muted);font-size:18px;max-width:700px;margin:0 auto 24px;}
-    
-    /* Profile picture */
-    .profile-pic {
-  width: 300px;              /* bigger size */
-  height: auto;              /* keep natural aspect ratio */
-  border-radius: 20px;       /* rounded corners instead of circle */
-  object-fit: cover;         /* handles portrait/landscape gracefully */
-  margin-bottom: 25px;
-  border: 3px solid var(--brand);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 1s ease forwards;
-}
 
-    .hero h1, .hero p, .hero a, .socials {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s ease forwards;
+    .stat-num {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 4px;
     }
-    .hero h1 { animation-delay: 0.3s; }
-    .hero p { animation-delay: 0.6s; }
-    .hero a, .socials { animation-delay: 0.9s; }
 
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    /* ═══════════════════════════════════════════════
+       ABOUT SECTION
+       ═══════════════════════════════════════════════ */
+    #about {
+      padding: 120px 0;
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* Slideshow */
+    .slideshow-wrap {
+      position: sticky;
+      top: calc(var(--nav-h) + 24px);
+    }
+
+    .slideshow {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      background: var(--surface);
+      aspect-ratio: 4/3;
+    }
+
+    .slides-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.65s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    .slide-item {
+      min-width: 100%;
+      height: 100%;
+    }
+
+    .slide-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .slide-controls {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+      pointer-events: none;
+    }
+
+    .slide-btn {
+      pointer-events: all;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(10,9,15,0.55);
+      color: white;
+      font-size: 14px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .slide-btn:hover {
+      background: rgba(201,168,76,0.45);
+      transform: scale(1.08);
+    }
+
+    .slide-dots {
+      position: absolute;
+      bottom: 14px; left: 0; right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .slide-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .slide-dot.active {
+      background: var(--accent);
+      width: 20px;
+      border-radius: 4px;
+    }
+
+    /* Bio */
+    .about-bio { }
+
+    .bio-prose {
+      font-size: 16px;
+      color: var(--text-dim);
+      line-height: 1.8;
+    }
+
+    .bio-prose p {
+      margin-bottom: 18px;
+      text-align: justify;
+    }
+
+    .bio-prose p:last-child { margin-bottom: 0; }
+
+    .bio-prose a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    }
+
+    .bio-prose a:hover {
+      text-decoration-color: var(--accent);
+      opacity: 1;
+    }
+
+    /* Quick facts */
+    .quick-facts {
+      margin-top: 40px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+    }
+
+    .quick-facts-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      padding: 6px 13px;
+      border-radius: 40px;
+      border: 1px solid var(--border-mid);
+      background: var(--surface-2);
+      font-size: 13px;
+      color: var(--text-dim);
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+
+    /* ═══════════════════════════════════════════════
+       PROJECTS SECTION
+       ═══════════════════════════════════════════════ */
+    #projects {
+      padding: 120px 0;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      position: relative;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border-mid);
+    }
+
+    .project-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .project-card-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: var(--accent-glow);
+      border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+    }
+
+    .project-card h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.25;
+    }
+
+    .project-card p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.65;
+      flex-grow: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      padding: 4px 10px;
+      border-radius: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-glow-2);
+      border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+
+    .project-link:hover {
+      gap: 10px;
+      opacity: 1;
+    }
+
+    .project-link svg {
+      width: 14px; height: 14px;
+      transition: transform 0.2s;
+    }
+
+    .project-link:hover svg { transform: translateX(3px); }
+
+    /* ═══════════════════════════════════════════════
+       PUBLICATIONS SECTION
+       ═══════════════════════════════════════════════ */
+    #publications {
+      padding: 120px 0;
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .pub-card {
+      position: relative;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      background: var(--surface);
+      transition: border-color 0.25s, box-shadow 0.25s;
+      overflow: hidden;
+    }
+
+    .pub-card:hover {
+      border-color: var(--border-mid);
+      box-shadow: var(--shadow);
+    }
+
+    .pub-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--accent);
+      opacity: 0.5;
+      transition: opacity 0.25s;
+    }
+
+    .pub-card:hover::before { opacity: 1; }
+
+    .pub-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .pub-year {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-glow-2);
+      border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+
+    .pub-journal {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .pub-preprint {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--red);
+      background: rgba(224,112,112,0.1);
+      border: 1px solid rgba(224,112,112,0.2);
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+
+    .pub-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 21px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .pub-title a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .pub-title a:hover {
+      color: var(--accent);
+      opacity: 1;
+    }
+
+    .pub-authors {
+      font-size: 14px;
+      color: var(--text-dim);
+      margin-bottom: 20px;
+    }
+
+    .pub-authors strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .pub-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pub-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .pub-btn-arxiv {
+      background: var(--accent-glow-2);
+      border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+      color: var(--accent);
+    }
+
+    .pub-btn-doi {
+      background: var(--surface-2);
+      border: 1px solid var(--border-mid);
+      color: var(--text-dim);
+    }
+
+    .pub-btn:hover {
+      transform: translateY(-2px);
+      opacity: 1;
+    }
+
+    .pub-btn-arxiv:hover {
+      background: var(--accent-glow);
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+
+    .pub-btn-doi:hover {
+      color: var(--text);
+      border-color: var(--border-mid);
+    }
+
+    /* Scholar link */
+    .scholar-link-wrap {
+      margin-top: 36px;
+      text-align: center;
+    }
+
+    /* ═══════════════════════════════════════════════
+       THESIS SECTION
+       ═══════════════════════════════════════════════ */
+    #thesis {
+      padding: 120px 0;
+    }
+
+    .thesis-header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .thesis-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .thesis-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-dim);
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .thesis-badge strong { color: var(--text); }
+
+    .thesis-actions {
+      display: flex;
+      gap: 10px;
+      align-self: start;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    /* PDF Viewer */
+    .pdf-frame-wrap {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+      background: var(--surface);
+    }
+
+    .pdf-frame-wrap iframe {
+      width: 100%;
+      height: 88vh;
+      min-height: 600px;
+      border: none;
+      display: block;
+    }
+
+    /* ═══════════════════════════════════════════════
+       CONTACT SECTION
+       ═══════════════════════════════════════════════ */
+    #contact {
+      padding: 120px 0;
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 32px;
+    }
+
+    .contact-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      background: var(--surface);
+    }
+
+    .contact-card-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-item:last-child { border-bottom: none; }
+
+    .contact-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--accent-glow-2);
+      border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+      display: grid;
+      place-items: center;
+      font-size: 17px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .contact-info { flex-grow: 1; }
+
+    .contact-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 5px;
+    }
+
+    .contact-value {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    .contact-value a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .contact-value a:hover {
+      color: var(--accent);
+      opacity: 1;
+    }
+
+    .contact-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 14px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid var(--border-mid);
+      background: var(--surface-2);
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .contact-btn:hover {
+      color: var(--text);
+      border-color: var(--border-mid);
+      transform: translateY(-1px);
+      opacity: 1;
+    }
+
+    /* Social grid */
+    .social-links-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .social-link-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface-2);
+      text-decoration: none;
+      color: var(--text-dim);
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .social-link-card:hover {
+      border-color: var(--border-mid);
+      color: var(--text);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+      opacity: 1;
+    }
+
+    .social-link-card svg {
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+      color: var(--accent);
+    }
+
+    /* Email CTA */
+    .email-cta {
+      margin-top: 24px;
+      padding: 24px 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .email-cta-text { }
+    .email-cta-text strong { font-size: 15px; color: var(--text); }
+    .email-cta-text p { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
+
+    /* ═══════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════ */
+    footer {
+      padding: 40px 0 48px;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      opacity: 1;
+    }
+
+    /* ═══════════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .hero-card {
+        max-width: 360px;
+        margin-inline: auto;
+        order: -1;
+      }
+
+      .hero-photo { height: 340px; }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .slideshow-wrap {
+        position: static;
+        order: -1;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .thesis-header {
+        grid-template-columns: 1fr;
+      }
+
+      .thesis-actions {
+        justify-content: flex-start;
+      }
+
+      .stats-strip {
+        grid-template-columns: 1fr;
       }
     }
 
-    .btn {display:inline-block;padding:12px 20px;border-radius:10px;background:var(--brand);color:#fff;font-weight:700;text-decoration:none;transition:opacity .2s;}
-    .btn:hover {opacity:0.9;}
-    .theme-toggle {margin-left:20px;cursor:pointer;background:none;border:1px solid var(--muted);border-radius:8px;padding:6px 12px;color:var(--text);}
-    .socials a {margin:0 8px;text-decoration:none;color:var(--brand);font-size:18px;}
-    .projects {padding:40px 0;background:var(--panel);}
-    .projects h2 {text-align:center;margin-bottom:30px;}
-    .proj-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
-    .proj {background:var(--bg);padding:20px;border-radius:12px;box-shadow:var(--shadow);}
-    .proj h3 {margin-top:0;color:var(--brand);}
-    .proj p {color:var(--muted);}
-    .proj a {display:inline-block;margin-top:10px;color:var(--brand);text-decoration:none;font-weight:600;}
-    footer {padding:30px 0;text-align:center;font-size:14px;color:var(--muted);margin-top:40px;border-top:1px solid var(--muted);}
+    @media (max-width: 720px) {
+      :root { --nav-h: 62px; }
+
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { display: block; }
+
+      #home { padding-top: calc(var(--nav-h) + 32px); padding-bottom: 60px; }
+
+      .hero-name { letter-spacing: -0.01em; }
+
+      .section-title { margin-bottom: 36px; }
+
+      #about, #projects, #publications, #thesis, #contact { padding: 80px 0; }
+
+      .pub-card { padding: 22px 20px; }
+
+      .pub-title { font-size: 18px; }
+
+      .contact-card { padding: 22px 20px; }
+
+      .social-links-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-socials { gap: 8px; }
+      .social-pill { padding: 7px 12px; font-size: 12px; }
+      .hero-cta { flex-direction: column; }
+      .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+    }
+
+    /* ═══════════════════════════════════════════════
+       TOAST NOTIFICATION
+       ═══════════════════════════════════════════════ */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--border-mid);
+      padding: 12px 22px;
+      border-radius: 40px;
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: var(--shadow);
+      z-index: 9999;
+      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  opacity 0.35s ease;
+      opacity: 0;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
   </style>
 </head>
+
 <body>
-  <header>
-    <div class="container nav">
-      <div class="logo">
-        <img src="logo.png" alt="Logo" />
-      </div>
-      <nav>
-        <ul>
-	  <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li> 
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="publications.html">Publications</a></li>
-		  <li><a href="thesispage.html">Thesis</a></li>
-          <li><a href="contact.html">Contact</a></li>
+
+  <!-- ══════════════════════════════════
+       NAVBAR
+       ══════════════════════════════════ -->
+  <header id="navbar" role="banner">
+    <div class="container nav-inner">
+      <a class="nav-logo" href="#home" aria-label="Home">
+        <img src="logo.png" alt="PSB" />
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul class="nav-links" role="list">
+          <li><a href="#home"         data-section="home">Home</a></li>
+          <li><a href="#about"        data-section="about">About</a></li>
+          <li><a href="#projects"     data-section="projects">Projects</a></li>
+          <li><a href="#publications" data-section="publications">Publications</a></li>
+          <li><a href="#thesis"       data-section="thesis">Thesis</a></li>
+          <li><a href="#contact"      data-section="contact">Contact</a></li>
         </ul>
       </nav>
-      <button class="theme-toggle" id="themeToggle">🌓</button>
+
+      <div class="nav-controls">
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle light/dark mode">🌓</button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <section class="hero container">
-    <img src="Photos/me.jpg" alt="Partha Sarathi Banerjee" class="profile-pic">
-    <h1>Dr. Partha Sarathi Banerjee</h1>
-    <p>PhD in Theoretical Condensed Matter Physics (IIT Delhi)</p>
-    <div style="margin-top:20px;">
-      <a href="mailto:partha.ae1@gmail.com">partha.ae1@gmail.com</a>
-    </div>
-    <div class="socials" style="margin-top:20px;">
-      <a href="https://www.linkedin.com/in/psb1996/">LinkedIn</a>
-      <a href="https://scholar.google.com/citations?user=fEFvHNMAAAAJ&hl=en">Google Scholar</a>
-      <a href="https://orcid.org/0009-0007-9104-8470">ORCiD</a>
-      <a href="https://arxiv.org/a/0009-0007-9104-8470.html">arXiv</a>
-    </div>
-  </section>
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+    <a href="#home"         data-mobile="home">Home</a>
+    <a href="#about"        data-mobile="about">About</a>
+    <a href="#projects"     data-mobile="projects">Projects</a>
+    <a href="#publications" data-mobile="publications">Publications</a>
+    <a href="#thesis"       data-mobile="thesis">Thesis</a>
+    <a href="#contact"      data-mobile="contact">Contact</a>
+  </div>
 
-  <section class="projects">
+  <!-- ══════════════════════════════════
+       HOME
+       ══════════════════════════════════ -->
+  <section id="home" aria-label="Introduction">
     <div class="container">
-      <h2>Highlighted Projects</h2>
-      <div class="proj-grid">
-        <div class="proj">
-          <h3>Numerical Analysis</h3>
-          <p>This repository contains various toy problems which can be used to solve numerical problems in various fields like physics, engineering, finance and data analysis.</p>
-          <a href="https://github.com/psbanerjee/Numerical-Analysis">View on GitHub</a>
+      <div class="hero-grid">
+
+        <!-- Text -->
+        <div class="hero-text">
+          <p class="hero-eyebrow reveal">Theoretical Physics &amp; Quantitative Research</p>
+
+          <h1 class="hero-name reveal reveal-d1">
+            Dr. Partha<br>Sarathi<br><em>Banerjee</em>
+          </h1>
+
+          <p class="hero-title reveal reveal-d2">
+            PhD in Theoretical Condensed Matter Physics<br>
+            Indian Institute of Technology, Delhi
+          </p>
+
+          <a href="mailto:partha.ae1@gmail.com" class="hero-email reveal reveal-d3">
+            partha.ae1@gmail.com
+          </a>
+
+          <div class="hero-socials reveal reveal-d3">
+            <a class="social-pill" href="https://www.linkedin.com/in/psb1996/" target="_blank" rel="noopener" aria-label="LinkedIn profile">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.13 1.44-2.13 2.93v5.68H9.35V9h3.42v1.56h.05c.48-.9 1.65-1.85 3.39-1.85 3.63 0 4.3 2.39 4.3 5.49v6.25ZM5.34 7.44a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+              LinkedIn
+            </a>
+            <a class="social-pill" href="https://scholar.google.com/citations?user=fEFvHNMAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar profile">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg>
+              Google Scholar
+            </a>
+            <a class="social-pill" href="https://orcid.org/0009-0007-9104-8470" target="_blank" rel="noopener" aria-label="ORCiD profile">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c2.359 0 3.981-1.528 3.981-3.722 0-2.016-1.475-3.722-3.981-3.722h-2.297z"/></svg>
+              ORCiD
+            </a>
+            <a class="social-pill" href="https://arxiv.org/a/0009-0007-9104-8470.html" target="_blank" rel="noopener" aria-label="arXiv profile">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.57 4.13L0 7.56l8.54 8.57L2.57 4.13zm.72-.49L12 17.5l8.71-13.86H3.29zM21.43 4.13l-5.97 12-1.46-2.32 7.43-9.68zm-1.14-.49L12 17l-8.29-13.36h16.58z"/></svg>
+              arXiv
+            </a>
+            <a class="social-pill" href="https://github.com/psbanerjee" target="_blank" rel="noopener" aria-label="GitHub profile">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12.3c0 5.2 3.4 9.6 8.2 11.1.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.3-1.8-1.3-1.8-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.8 1.8 2.6 2.3.6.1 1.3.1 2 0 .1-.8.4-1.3.7-1.6-2.7-.3-5.6-1.4-5.6-6.3 0-1.4.5-2.5 1.2-3.4-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.4 1.3a11.5 11.5 0 0 1 6.2 0c2.3-1.6 3.3-1.3 3.3-1.3.6 1.7.2 3 .1 3.3.8.9 1.3 2 1.3 3.4 0 4.9-2.9 6-5.6 6.3.4.3.8 1 .8 2.1v3.2c0 .3.2.7.8.6 4.8-1.5 8.2-5.9 8.2-11.1A11.5 11.5 0 0 0 12 .5Z"/></svg>
+              GitHub
+            </a>
+          </div>
+
+          <div class="hero-cta reveal reveal-d4">
+            <a href="Partha_Sarathi_Banerjee_CV.pdf" class="btn-primary" target="_blank" rel="noopener">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download CV
+            </a>
+            <a href="#publications" class="btn-ghost">
+              View Publications →
+            </a>
+          </div>
         </div>
-        <div class="proj">
-          <h3>BoundStates</h3>
-          <p> FORTRAN and Python based tool to calculate the wavefunctions and eigenvalues of any bound state problem.</p>
-          <a href="https://github.com/psbanerjee/Bound-States">View on GitHub</a>
+
+        <!-- Photo card -->
+        <div class="hero-card reveal reveal-d2">
+          <div class="hero-photo-wrap">
+            <img src="Photos/me.jpg" alt="Dr. Partha Sarathi Banerjee" class="hero-photo" loading="eager">
+            <div class="hero-photo-footer">
+              <div class="hero-affiliation">
+                <strong>Dr. Partha Sarathi Banerjee</strong>
+                PhD · Theoretical Condensed Matter Physics<br>
+                IIT Delhi · New Delhi, India
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats strip -->
+      <div class="stats-strip reveal reveal-d4">
+        <div class="stat-item">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Publications</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Research Groups</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">7+</div>
+          <div class="stat-label">Years at IIT Delhi</div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ══════════════════════════════════
+       ABOUT
+       ══════════════════════════════════ -->
+  <section id="about" aria-label="About">
+    <div class="container">
+
+      <div class="reveal">
+        <div class="section-label">Background</div>
+        <div class="divider"></div>
+        <h2 class="section-title">About Me</h2>
+      </div>
+
+      <div class="about-grid">
+
+        <!-- Slideshow (sticky on desktop) -->
+        <div class="slideshow-wrap reveal reveal-d1">
+          <div class="slideshow" id="slideshow" role="region" aria-label="Photo slideshow">
+            <div class="slides-track" id="slidesTrack">
+              <div class="slide-item"><img src="Photos/about-1.jpg"  alt="Partha Sarathi Banerjee — photo 1" loading="eager"></div>
+              <div class="slide-item"><img src="Photos/JOPT.png"     alt="Journal of Optics publication" loading="lazy"></div>
+              <div class="slide-item"><img src="Photos/about-2.png"  alt="Partha Sarathi Banerjee — photo 2" loading="lazy"></div>
+              <div class="slide-item"><img src="Photos/about-3.jpg"  alt="Partha Sarathi Banerjee — photo 3" loading="lazy"></div>
+              <div class="slide-item"><img src="Photos/about-4.jpg"  alt="Partha Sarathi Banerjee — photo 4" loading="lazy"></div>
+              <div class="slide-item"><img src="Photos/about-5.jpeg" alt="Partha Sarathi Banerjee — photo 5" loading="lazy"></div>
+            </div>
+            <div class="slide-controls" aria-hidden="true">
+              <button class="slide-btn" id="slidePrev" aria-label="Previous slide">◀</button>
+              <button class="slide-btn" id="slideNext" aria-label="Next slide">▶</button>
+            </div>
+            <div class="slide-dots" id="slideDots" aria-label="Slide indicators"></div>
+          </div>
+        </div>
+
+        <!-- Bio + quick facts -->
+        <div>
+          <div class="bio-prose reveal reveal-d1">
+            <p>I completed my PhD in Theoretical Condensed Matter Physics (2026) at the <a href="https://home.iitd.ac.in/" target="_blank" rel="noopener">Indian Institute of Technology, Delhi</a>, under the supervision of Prof. Rahul Marathe and Prof. Sankalpa Ghosh. My doctoral research focuses on quantum transport in graphene-based heterojunctions. In 2024, I published two works: one establishing an electronic analogue of Fourier optics with massless Dirac fermions, and another exploring the tunability of Josephson current in superconductor–graphene junctions. I also presented my work at the Max Planck Institute for the Physics of Complex Systems, Dresden.</p>
+
+            <p>Alongside my PhD, I worked in the Model Risk Management team at Morgan Stanley, Mumbai (2025). My role included validating financial models across domains such as Market Risk RWA and Prudent Valuation, as well as contributing to AI/ML model validations. This involved extensive diagnostic testing, sensitivity analysis, benchmarking, and outcome analysis.</p>
+
+            <p>Before my PhD, I completed an MSc in Physics (2017–2019) at <a href="https://home.iitd.ac.in/" target="_blank" rel="noopener">IIT Delhi</a>, where I developed a strong interest in theoretical physics and worked on nonequilibrium statistical mechanics for my master's thesis under Prof. Rahul Marathe. Prior to that, I earned my B.Sc. (Hons.) in Physics (2012–2014) from <a href="https://www.bangabasi.ac.in/" target="_blank" rel="noopener">Bangabasi College</a>, where I was introduced to programming and computational approaches in physics, which shaped my long-term research interests in optics and condensed matter physics.</p>
+
+            <p>My academic journey began at <a href="https://school.banglarshiksha.gov.in/ws/website/index/19161400104/" target="_blank" rel="noopener">Baluhati High School</a>, where I completed my schooling up to Class XII (2014). It was here that my passion for mathematics and physics first took root. Early experiments in chemistry also taught me the joy of hands-on science, even though my path ultimately focused on physics and computation.</p>
+
+            <p>Beyond academics, I am deeply passionate about history, photography, and exploring historical places. These pursuits complement my scientific curiosity and give me new perspectives on culture, time, and human creativity.</p>
+          </div>
+
+          <div class="quick-facts reveal reveal-d2">
+            <p class="quick-facts-title">Quick Facts</p>
+            <div class="chips">
+              <span class="chip">PhD (Theoretical Physics), IIT Delhi</span>
+              <span class="chip">Model Validation @ Morgan Stanley</span>
+              <span class="chip">Josephson junctions</span>
+              <span class="chip">Andreev reflections</span>
+              <span class="chip">Publications in 2024</span>
+              <span class="chip">MSc, IIT Delhi</span>
+              <span class="chip">New Delhi, India</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       PROJECTS
+       ══════════════════════════════════ -->
+  <section id="projects" aria-label="Projects">
+    <div class="container">
+
+      <div class="reveal">
+        <div class="section-label">Coding &amp; Research</div>
+        <div class="divider"></div>
+        <h2 class="section-title">Projects</h2>
+      </div>
+
+      <div class="projects-grid">
+
+        <div class="project-card reveal reveal-d1">
+          <div class="project-card-icon">🔢</div>
+          <h3>Numerical Analysis</h3>
+          <p>This repository contains various toy problems which can be used to solve numerical problems in various fields like physics, engineering, finance and data analysis.</p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Jupyter</span>
+            <span class="tag">NumPy</span>
+          </div>
+          <a class="project-link" href="https://github.com/psbanerjee/Numerical-Analysis" target="_blank" rel="noopener">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div class="project-card reveal reveal-d2">
+          <div class="project-card-icon">⚛️</div>
+          <h3>Bound-States</h3>
+          <p>FORTRAN and Python based tool to calculate the wavefunctions and eigenvalues of any bound state problem.</p>
+          <div class="project-tags">
+            <span class="tag">Python</span>
+            <span class="tag">NumPy</span>
+            <span class="tag">FORTRAN</span>
+          </div>
+          <a class="project-link" href="https://github.com/psbanerjee/Bound-States" target="_blank" rel="noopener">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div class="project-card reveal reveal-d3">
+          <div class="project-card-icon">🤖</div>
+          <h3>Prompt Engineering</h3>
+          <p>This project contains a collection of prompt engineering techniques, examples, and experiments designed to help build, evaluate, and optimize interactions with large language models.</p>
+          <div class="project-tags">
+            <span class="tag">Prompt Engineering</span>
+            <span class="tag">LLM Optimization</span>
+            <span class="tag">AI Interaction</span>
+          </div>
+          <a class="project-link" href="https://github.com/psbanerjee/psbanerjee.github.io/blob/main/Prompt%20Engineering%20Writeup.pdf" target="_blank" rel="noopener">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div class="project-card reveal reveal-d4">
+          <div class="project-card-icon">🐧</div>
+          <h3>Linux-PSB</h3>
+          <p>This repository contains various bash scripts which automatically installs most of the scientific software you need. Works with Ubuntu and Fedora.</p>
+          <div class="project-tags">
+            <span class="tag">Bash</span>
+            <span class="tag">Linux</span>
+            <span class="tag">Ubuntu</span>
+          </div>
+          <a class="project-link" href="https://github.com/psbanerjee/psbanerjee" target="_blank" rel="noopener">
+            View on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       PUBLICATIONS
+       ══════════════════════════════════ -->
+  <section id="publications" aria-label="Publications">
+    <div class="container">
+
+      <div class="reveal">
+        <div class="section-label">Research Output</div>
+        <div class="divider"></div>
+        <h2 class="section-title">Publications</h2>
+      </div>
+
+      <div class="pub-list">
+
+        <!-- Publication 1 -->
+        <article class="pub-card reveal reveal-d1">
+          <div class="pub-meta-row">
+            <span class="pub-year">2025</span>
+            <span class="pub-preprint">Preprint</span>
+            <span class="pub-journal">arXiv</span>
+          </div>
+          <h3 class="pub-title">
+            <a href="https://arxiv.org/abs/2510.11432" target="_blank" rel="noopener">
+              Intermediate chiral edge states in quantum Hall Josephson junctions
+            </a>
+          </h3>
+          <p class="pub-authors">
+            <strong>P. S. Banerjee</strong>, R. Marathe, S. Ghosh
+          </p>
+          <div class="pub-links">
+            <a class="pub-btn pub-btn-arxiv" href="https://arxiv.org/abs/2510.11432" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.57 4.13L0 7.56l8.54 8.57L2.57 4.13zm.72-.49L12 17.5l8.71-13.86H3.29zM21.43 4.13l-5.97 12-1.46-2.32 7.43-9.68zm-1.14-.49L12 17l-8.29-13.36h16.58z"/></svg>
+              arXiv:2510.11432
+            </a>
+          </div>
+        </article>
+
+        <!-- Publication 2 -->
+        <article class="pub-card reveal reveal-d2">
+          <div class="pub-meta-row">
+            <span class="pub-year">2024</span>
+            <span class="pub-journal">Physica Scripta</span>
+          </div>
+          <h3 class="pub-title">
+            <a href="https://iopscience.iop.org/article/10.1088/1402-4896/ad9c23" target="_blank" rel="noopener">
+              Magnetically modulated superconductor–graphene–superconductor (SGS) Josephson junctions and their tunability
+            </a>
+          </h3>
+          <p class="pub-authors">
+            <strong>P. S. Banerjee</strong>, R. Marathe, S. Ghosh
+          </p>
+          <div class="pub-links">
+            <a class="pub-btn pub-btn-arxiv" href="https://arxiv.org/abs/2408.09925" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.57 4.13L0 7.56l8.54 8.57L2.57 4.13zm.72-.49L12 17.5l8.71-13.86H3.29zM21.43 4.13l-5.97 12-1.46-2.32 7.43-9.68zm-1.14-.49L12 17l-8.29-13.36h16.58z"/></svg>
+              arXiv:2408.09925
+            </a>
+            <a class="pub-btn pub-btn-doi" href="https://iopscience.iop.org/article/10.1088/1402-4896/ad9c23" target="_blank" rel="noopener">
+              DOI →
+            </a>
+          </div>
+        </article>
+
+        <!-- Publication 3 -->
+        <article class="pub-card reveal reveal-d3">
+          <div class="pub-meta-row">
+            <span class="pub-year">2024</span>
+            <span class="pub-journal">Journal of Optics</span>
+          </div>
+          <h3 class="pub-title">
+            <a href="https://iopscience.iop.org/article/10.1088/2040-8986/ad645b" target="_blank" rel="noopener">
+              Electronic analogue of Fourier optics with massless Dirac fermions scattered by quantum dot lattice
+            </a>
+          </h3>
+          <p class="pub-authors">
+            <strong>P. S. Banerjee</strong>, R. Marathe, S. Ghosh
+          </p>
+          <div class="pub-links">
+            <a class="pub-btn pub-btn-arxiv" href="https://arxiv.org/abs/2402.11259" target="_blank" rel="noopener">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.57 4.13L0 7.56l8.54 8.57L2.57 4.13zm.72-.49L12 17.5l8.71-13.86H3.29zM21.43 4.13l-5.97 12-1.46-2.32 7.43-9.68zm-1.14-.49L12 17l-8.29-13.36h16.58z"/></svg>
+              arXiv:2402.11259
+            </a>
+            <a class="pub-btn pub-btn-doi" href="https://iopscience.iop.org/article/10.1088/2040-8986/ad645b" target="_blank" rel="noopener">
+              DOI →
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="scholar-link-wrap reveal reveal-d4">
+        <a class="btn-ghost" href="https://scholar.google.com/citations?user=fEFvHNMAAAAJ&hl=en" target="_blank" rel="noopener">
+          View full profile on Google Scholar →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       THESIS
+       ══════════════════════════════════ -->
+  <section id="thesis" aria-label="PhD Thesis">
+    <div class="container">
+
+      <div class="thesis-header">
+        <div class="reveal">
+          <div class="section-label">Doctoral Work</div>
+          <div class="divider"></div>
+          <h2 class="section-title" style="margin-bottom: 20px;">PhD Thesis</h2>
+          <div class="thesis-meta">
+            <span class="thesis-badge">🎓 <strong>IIT Delhi</strong></span>
+            <span class="thesis-badge">📅 <strong>2026</strong></span>
+            <span class="thesis-badge">🔬 <strong>Condensed Matter Physics</strong></span>
+          </div>
+        </div>
+        <div class="thesis-actions reveal reveal-d1">
+          <a class="btn-primary" href="Thesis.pdf" target="_blank" rel="noopener" download>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download PDF
+          </a>
+          <a class="btn-ghost" href="Thesis.pdf" target="_blank" rel="noopener">
+            Open in new tab ↗
+          </a>
+        </div>
+      </div>
+
+      <div class="pdf-frame-wrap reveal">
+        <iframe src="Thesis.pdf" title="PhD Thesis — Dr. Partha Sarathi Banerjee" aria-label="Embedded thesis PDF viewer"></iframe>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       CONTACT
+       ══════════════════════════════════ -->
+  <section id="contact" aria-label="Contact">
+    <div class="container">
+
+      <div class="reveal">
+        <div class="section-label">Get in Touch</div>
+        <div class="divider"></div>
+        <h2 class="section-title">Contact</h2>
+        <p style="color: var(--text-dim); margin-top: -28px; margin-bottom: 40px; font-size: 16px;">
+          Please feel free to ping me anytime if you want to discuss anything like Physics, finance, cricket, history, photography, travelling or even geopolitics.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+
+        <!-- Direct contact -->
+        <div class="contact-card reveal reveal-d1">
+          <p class="contact-card-title">Direct Contact</p>
+
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">📍</div>
+            <div class="contact-info">
+              <div class="contact-label">Address</div>
+              <div class="contact-value">
+                Room No. MS306, Department of Physics,<br>
+                Indian Institute of Technology Delhi,<br>
+                Hauz Khas 110 016, New Delhi, INDIA
+              </div>
+              <div class="contact-actions">
+                <button class="contact-btn" onclick="copyAddress()" aria-label="Copy address to clipboard">📋 Copy</button>
+                <a class="contact-btn" href="https://www.google.com/maps/search/?api=1&query=Room%20No.%20MS306%2C%20Department%20of%20Physics%2C%20IIT%20Delhi%2C%20Hauz%20Khas%20110%20016%2C%20New%20Delhi%2C%20India" target="_blank" rel="noopener" aria-label="View on Google Maps">🗺️ Map</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">✉️</div>
+            <div class="contact-info">
+              <div class="contact-label">Email</div>
+              <div class="contact-value">
+                <a href="mailto:partha.ae1@gmail.com">partha.ae1@gmail.com</a><br>
+                <a href="mailto:phz198030@physics.iitd.ac.in">phz198030@physics.iitd.ac.in</a>
+              </div>
+              <div class="contact-actions">
+                <a class="contact-btn" href="mailto:partha.ae1@gmail.com?subject=Hello%20Partha" aria-label="Compose email">✉️ Compose</a>
+                <button class="contact-btn" onclick="copyEmails()" aria-label="Copy email addresses">📋 Copy</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true">💾</div>
+            <div class="contact-info">
+              <div class="contact-label">vCard</div>
+              <div class="contact-value">Save contact to your address book</div>
+              <div class="contact-actions">
+                <button class="contact-btn btn-primary" style="padding: 8px 16px; border-radius: 8px; font-size: 13px;" onclick="downloadVCard()">⬇️ Download vCard</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social links -->
+        <aside class="contact-card reveal reveal-d2">
+          <p class="contact-card-title">Social Profiles</p>
+          <div class="social-links-grid">
+            <a class="social-link-card" href="https://github.com/psbanerjee" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12.3c0 5.2 3.4 9.6 8.2 11.1.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.3-1.8-1.3-1.8-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.8 1.8 2.6 2.3.6.1 1.3.1 2 0 .1-.8.4-1.3.7-1.6-2.7-.3-5.6-1.4-5.6-6.3 0-1.4.5-2.5 1.2-3.4-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.4 1.3a11.5 11.5 0 0 1 6.2 0c2.3-1.6 3.3-1.3 3.3-1.3.6 1.7.2 3 .1 3.3.8.9 1.3 2 1.3 3.4 0 4.9-2.9 6-5.6 6.3.4.3.8 1 .8 2.1v3.2c0 .3.2.7.8.6 4.8-1.5 8.2-5.9 8.2-11.1A11.5 11.5 0 0 0 12 .5Z"/></svg>
+              @psbanerjee
+            </a>
+            <a class="social-link-card" href="https://www.linkedin.com/in/psb1996/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.13 1.44-2.13 2.93v5.68H9.35V9h3.42v1.56h.05c.48-.9 1.65-1.85 3.39-1.85 3.63 0 4.3 2.39 4.3 5.49v6.25ZM5.34 7.44a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+              LinkedIn
+            </a>
+            <a class="social-link-card" href="https://scholar.google.com/citations?user=fEFvHNMAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z"/></svg>
+              Scholar
+            </a>
+            <a class="social-link-card" href="https://orcid.org/0009-0007-9104-8470" target="_blank" rel="noopener" aria-label="ORCiD">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.919V7.416zm1.444 1.303v7.444h2.297c2.359 0 3.981-1.528 3.981-3.722 0-2.016-1.475-3.722-3.981-3.722h-2.297z"/></svg>
+              ORCiD
+            </a>
+            <a class="social-link-card" href="https://arxiv.org/a/0009-0007-9104-8470.html" target="_blank" rel="noopener" aria-label="arXiv">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.57 4.13L0 7.56l8.54 8.57L2.57 4.13zm.72-.49L12 17.5l8.71-13.86H3.29zM21.43 4.13l-5.97 12-1.46-2.32 7.43-9.68zm-1.14-.49L12 17l-8.29-13.36h16.58z"/></svg>
+              arXiv
+            </a>
+            <a class="social-link-card" href="https://www.facebook.com/psbphysics/" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.3V12h2.3V9.7c0-2.3 1.4-3.5 3.4-3.5.98 0 2 .17 2 .17v2.2h-1.1c-1.1 0-1.5.7-1.5 1.4V12h2.6l-.41 2.9h-2.2v7A10 10 0 0 0 22 12Z"/></svg>
+              Facebook
+            </a>
+            <a class="social-link-card" href="https://www.instagram.com/p_s_banerjee/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              Instagram
+            </a>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Email CTA banner -->
+      <div class="email-cta reveal reveal-d3">
+        <div class="email-cta-text">
+          <strong>Prefer email?</strong>
+          <p>Click to compose a message with your default mail app.</p>
+        </div>
+        <a class="btn-primary" href="mailto:partha.ae1@gmail.com?subject=Inquiry%20from%20Website">
+          ✉️ Email Partha
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       FOOTER
+       ══════════════════════════════════ -->
   <footer>
-    © <span id="year"></span> Partha Sarathi Banerjee. All rights reserved.
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-copy">
+          © <span id="year"></span> Dr. Partha Sarathi Banerjee. All rights reserved.
+        </div>
+        <div class="footer-links">
+          <a href="mailto:partha.ae1@gmail.com">Email</a>
+          <a href="https://github.com/psbanerjee" target="_blank" rel="noopener">GitHub</a>
+          <a href="Partha_Sarathi_Banerjee_CV.pdf" target="_blank" rel="noopener">CV</a>
+        </div>
+      </div>
+    </div>
   </footer>
 
-  <script>
-    const root = document.documentElement;
-    const saved = localStorage.getItem('theme');
-    if (saved === 'light') root.classList.add('light');
+  <!-- Toast notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    document.getElementById('themeToggle').addEventListener('click', () => {
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Partha Sarathi Banerjee",
+    "honorificPrefix": "Dr.",
+    "url": "https://psbanerjee.github.io/",
+    "email": "mailto:partha.ae1@gmail.com",
+    "affiliation": {
+      "@type": "CollegeOrUniversity",
+      "name": "Indian Institute of Technology Delhi"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Room No. MS306, Department of Physics",
+      "addressLocality": "New Delhi",
+      "addressRegion": "Delhi",
+      "postalCode": "110016",
+      "addressCountry": "IN"
+    },
+    "sameAs": [
+      "https://github.com/psbanerjee",
+      "https://www.linkedin.com/in/psb1996/",
+      "https://scholar.google.com/citations?user=fEFvHNMAAAAJ&hl=en",
+      "https://orcid.org/0009-0007-9104-8470",
+      "https://arxiv.org/a/0009-0007-9104-8470.html",
+      "https://www.facebook.com/psbphysics/",
+      "https://www.instagram.com/p_s_banerjee/"
+    ]
+  }
+  </script>
+
+  <script>
+    /* ═══════════════════════════════════════════════
+       THEME TOGGLE
+       ═══════════════════════════════════════════════ */
+    (function() {
+      const root = document.documentElement;
+      const saved = localStorage.getItem('theme');
+      if (saved === 'light') root.classList.add('light');
+    })();
+
+    document.getElementById('themeBtn').addEventListener('click', () => {
+      const root = document.documentElement;
       root.classList.toggle('light');
       localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
     });
 
+    /* ═══════════════════════════════════════════════
+       NAVBAR: SCROLL & ACTIVE SECTION
+       ═══════════════════════════════════════════════ */
+    const navbar = document.getElementById('navbar');
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a[data-section]');
+    const mobileLinks = document.querySelectorAll('.mobile-menu a[data-mobile]');
+
+    let ticking = false;
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          // Scrolled class
+          if (window.scrollY > 20) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+
+          // Active section
+          let current = '';
+          sections.forEach(sec => {
+            const top = sec.offsetTop - parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) - 40;
+            if (window.scrollY >= top) current = sec.id;
+          });
+
+          navLinks.forEach(a => {
+            a.classList.toggle('active', a.dataset.section === current);
+          });
+          mobileLinks.forEach(a => {
+            a.classList.toggle('active', a.dataset.mobile === current);
+          });
+
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // run once
+
+    /* ═══════════════════════════════════════════════
+       MOBILE MENU
+       ═══════════════════════════════════════════════ */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    // Close on link click
+    mobileLinks.forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+
+    /* ═══════════════════════════════════════════════
+       INTERSECTION OBSERVER: REVEAL ANIMATIONS
+       ═══════════════════════════════════════════════ */
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    /* ═══════════════════════════════════════════════
+       PHOTO SLIDESHOW
+       ═══════════════════════════════════════════════ */
+    (function initSlider() {
+      const track   = document.getElementById('slidesTrack');
+      const dotsWrap = document.getElementById('slideDots');
+      const prevBtn  = document.getElementById('slidePrev');
+      const nextBtn  = document.getElementById('slideNext');
+      const slider   = document.getElementById('slideshow');
+
+      if (!track) return;
+
+      const total = track.children.length;
+      let current = 0;
+      let timer = null;
+      let hovering = false;
+
+      // Build dots
+      for (let i = 0; i < total; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        dot.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(dot);
+      }
+
+      function updateDots() {
+        dotsWrap.querySelectorAll('.slide-dot').forEach((d, i) => {
+          d.classList.toggle('active', i === current);
+        });
+      }
+
+      function goTo(n) {
+        current = (n + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        updateDots();
+      }
+
+      prevBtn.addEventListener('click', () => goTo(current - 1));
+      nextBtn.addEventListener('click', () => goTo(current + 1));
+
+      // Autoplay
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function startAuto() {
+        if (prefersReduced) return;
+        stopAuto();
+        timer = setInterval(() => {
+          if (!hovering && !document.hidden) goTo(current + 1);
+        }, 4800);
+      }
+
+      function stopAuto() { if (timer) clearInterval(timer); }
+
+      slider.addEventListener('mouseenter', () => { hovering = true; });
+      slider.addEventListener('mouseleave', () => { hovering = false; });
+      document.addEventListener('visibilitychange', () => {
+        document.hidden ? stopAuto() : startAuto();
+      });
+
+      startAuto();
+
+      // Keyboard
+      slider.tabIndex = 0;
+      slider.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight') goTo(current + 1);
+        if (e.key === 'ArrowLeft')  goTo(current - 1);
+      });
+
+      // Touch/pointer swipe
+      let sx = 0, dx = 0, touching = false;
+      slider.addEventListener('pointerdown', e => { touching = true; sx = e.clientX; });
+      slider.addEventListener('pointermove', e => { if (!touching) return; dx = e.clientX - sx; });
+      slider.addEventListener('pointerup',   () => {
+        if (Math.abs(dx) > 40) { dx < 0 ? goTo(current + 1) : goTo(current - 1); }
+        touching = false; dx = 0;
+      });
+    })();
+
+    /* ═══════════════════════════════════════════════
+       TOAST HELPER
+       ═══════════════════════════════════════════════ */
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2800);
+    }
+
+    /* ═══════════════════════════════════════════════
+       CONTACT UTILITIES
+       ═══════════════════════════════════════════════ */
+    function copyAddress() {
+      const text = 'Room No. MS306, Department of Physics, Indian Institute of Technology Delhi, Hauz Khas 110 016, New Delhi, INDIA';
+      navigator.clipboard.writeText(text)
+        .then(() => showToast('✅ Address copied to clipboard'))
+        .catch(() => showToast('Could not copy — please copy manually'));
+    }
+
+    function copyEmails() {
+      const text = 'partha.ae1@gmail.com; phz198030@physics.iitd.ac.in';
+      navigator.clipboard.writeText(text)
+        .then(() => showToast('✅ Email addresses copied'))
+        .catch(() => showToast('Could not copy — please copy manually'));
+    }
+
+    function downloadVCard() {
+      const vcard = [
+        'BEGIN:VCARD',
+        'VERSION:3.0',
+        'N:Banerjee;Partha Sarathi;;;',
+        'FN:Partha Sarathi Banerjee',
+        'EMAIL;TYPE=INTERNET,WORK:phz198030@physics.iitd.ac.in',
+        'EMAIL;TYPE=INTERNET,HOME:partha.ae1@gmail.com',
+        'ADR;TYPE=WORK:;;Room No. MS306\\, Department of Physics;New Delhi;Delhi;110016;India',
+        'ORG:Indian Institute of Technology Delhi',
+        'TITLE:PhD, Theoretical Condensed Matter Physics',
+        'URL:https://psbanerjee.github.io/',
+        'END:VCARD'
+      ].join('\n');
+
+      const blob = new Blob([vcard], { type: 'text/vcard' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href = url;
+      a.download = 'Partha_Sarathi_Banerjee.vcf';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      showToast('✅ vCard downloaded');
+    }
+
+    /* Footer year */
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
 </body>
 </html>
